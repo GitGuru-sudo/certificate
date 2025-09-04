@@ -12,39 +12,49 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <style>
-    /* (Your existing styles...) */
-    /* ... */
+    body { font-family: Arial, sans-serif; background:#f4f4f9; margin:0; padding:20px; }
+    .wrap { display:flex; gap:20px; }
+    .panel { background:#fff; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1); flex:1; }
+    .btn { background:#4caf50; color:white; padding:10px 20px; border:none; border-radius:5px; cursor:pointer; }
+    .btn:hover { background:#45a049; }
+    .cert-title { font-size:24px; font-weight:bold; margin-bottom:10px; }
+    .student-name { font-size:22px; font-weight:600; margin:10px 0; }
+    .course-name { font-size:18px; color:#333; }
+    .muted { color:#777; margin:5px 0; }
+    .meta { font-size:12px; color:#444; }
+    .signature { margin-top:40px; text-align:right; }
+    .preview-area { flex:2; display:flex; justify-content:center; align-items:center; }
+    #certificate { background:white; padding:40px; border:2px solid #000; width:600px; text-align:center; }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="panel">
       <h1>Certificate Generator</h1>
-      <p class="lead">Enter your <strong>Enrollment Number</strong>. It will fetch Name & Course from Supabase and generate a certificate PDF.</p>
+      <p>Enter your <strong>Enrollment Number</strong>. It will fetch Name & Course from Supabase and generate a certificate PDF.</p>
 
       <label for="enrollment">Enrollment Number</label>
       <input id="enrollment" type="text" placeholder="e.g. A101" autocomplete="off" />
 
       <button id="fetchBtn" class="btn" onclick="onFetch()">Get Certificate</button>
-      <div id="status" class="small" style="margin-top:12px;"></div>
+      <div id="status" style="margin-top:12px; color:#d33;"></div>
     </div>
 
     <div class="panel preview-area">
       <div id="certificate">
-        <div style="text-align:center; width:100%;">
-          <div class="cert-title">Certificate of Completion</div>
-          <div class="muted">This certificate is proudly presented to</div>
-          <div class="student-name" id="certName">Student Name</div>
-          <div class="course-name" id="certCourse">Course / Event Name</div>
+        <div class="cert-title">Certificate of Completion</div>
+        <div class="muted">This certificate is proudly presented to</div>
+        <div class="student-name" id="certName">Student Name</div>
+        <div class="course-name" id="certCourse">Course / Event Name</div>
 
-          <div class="meta-row" style="margin-top:28px;">
-            <div class="meta">Date: <span id="certDate"></span></div>
-            <div class="meta">Certificate ID: <span id="certId"></span></div>
-          </div>
+        <div style="margin-top:28px;">
+          <div class="meta">Date: <span id="certDate"></span></div>
+          <div class="meta">Certificate ID: <span id="certId"></span></div>
         </div>
+
         <div class="signature">
           <div style="font-weight:700">Techniki Club</div>
-          <div style="font-size:12px; color:var(--muted)">Coordinator Signature</div>
+          <div style="font-size:12px; color:#777;">Coordinator Signature</div>
         </div>
       </div>
     </div>
@@ -54,10 +64,8 @@
     /******************************
      * CONFIG – REPLACE BELOW
      ******************************/
-    const SUPABASE_URL = "https://zgcyqufccguiustbufkl.supabase.co";
-      // ← REPLACE WITH YOUR PROJECT URL
-    const SUPABASE_ANON_KEY =  process.env.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpnY3lxdWZjY2d1aXVzdGJ1ZmtsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcwMDYwMDIsImV4cCI6MjA3MjU4MjAwMn0.JvgLWYQ4zh_uBA3gwznBQWEJV5_E9oRXnBukKMVtpZ8;
-                // ← REPLACE WITH YOUR ANON KEY
+    const SUPABASE_URL = "https://zgcyqufccguiustbufkl.supabase.co"; // your project URL
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpnY3lxdWZjY2d1aXVzdGJ1ZmtsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcwMDYwMDIsImV4cCI6MjA3MjU4MjAwMn0.JvgLWYQ4zh_uBA3gwznBQWEJV5_E9oRXnBukKMVtpZ8";
 
     const { createClient } = supabase;
     const client = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
