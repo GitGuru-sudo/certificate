@@ -12,328 +12,48 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-    
-    body { 
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-      margin: 0; 
-      padding: 10px; 
-      min-height: 100vh;
-    }
-    
-    .container { 
-      max-width: 1200px; 
-      margin: 0 auto; 
-    }
-    
-    .header { 
-      text-align: center; 
-      color: white; 
-      margin-bottom: 20px; 
-    }
-    
-    .header h1 { 
-      font-size: 2.5rem; 
-      margin-bottom: 10px; 
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3); 
-    }
-    
-    .header p { 
-      font-size: 1.1rem; 
-      opacity: 0.9; 
-    }
-    
-    .wrap { 
-      display: flex; 
-      gap: 20px; 
-      align-items: flex-start; 
-    }
-    
-    .panel { 
-      background: rgba(255,255,255,0.95); 
-      padding: 20px; 
-      border-radius: 15px; 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-      backdrop-filter: blur(10px);
-    }
-    
-    .input-panel { 
-      flex: 1; 
-      min-width: 300px;
-    }
-    
-    .preview-panel { 
-      flex: 2; 
-    }
-    
-    .form-group { 
-      margin-bottom: 20px; 
-    }
-    
-    .form-group label { 
-      display: block; 
-      margin-bottom: 8px; 
-      font-weight: 600; 
-      color: #333; 
-    }
-    
-    .form-group input { 
-      width: 100%; 
-      padding: 12px 16px; 
-      border: 2px solid #e0e0e0; 
-      border-radius: 10px; 
-      font-size: 16px; 
-      transition: border-color 0.3s ease;
-    }
-    
-    .form-group input:focus { 
-      outline: none; 
-      border-color: #667eea; 
-    }
-    
-    .btn { 
-      background: linear-gradient(45deg, #667eea, #764ba2); 
-      color: white; 
-      padding: 14px 28px; 
-      border: none; 
-      border-radius: 10px; 
-      cursor: pointer; 
-      font-size: 16px; 
-      font-weight: 600;
-      transition: all 0.3s ease;
-      width: 100%;
-    }
-    
-    .btn:hover { 
-      transform: translateY(-2px); 
-      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-    }
-    
-    .btn:disabled { 
-      background: #ccc; 
-      cursor: not-allowed; 
-      transform: none;
-    }
-    
-    .status { 
-      margin-top: 15px; 
-      padding: 12px; 
-      border-radius: 8px; 
-      font-weight: 500;
-    }
-    
-    .status.error { background: #ffe6e6; color: #d63384; }
-    .status.success { background: #e6ffe6; color: #198754; }
-    .status.info { background: #e6f3ff; color: #0d6efd; }
-    
-    .certificate-container {
-      width: 100%;
-      overflow-x: auto;
-      padding: 10px 0;
-    }
-    
-    #certificate { 
-      position: relative; 
-      width: 800px; 
-      height: 600px; 
-      border: none;
-      border-radius: 0;
-      overflow: hidden;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-      margin: 0 auto;
-      background: #fff;
-    }
-    
-    #certBg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-    
-    .cert-content { 
-      position: relative; 
-      z-index: 2; 
-      height: 100%; 
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px;
-    }
-    
-    .cert-presented-to {
-      font-size: 18px;
-      color: #8B7355;
-      margin-bottom: 15px;
-      font-weight: 400;
-    }
-    
-    .student-name { 
-      font-size: 36px; 
-      font-weight: 700; 
-      color: #B8860B; 
-      margin: 15px 0 30px 0; 
-      font-family: 'Brush Script MT', cursive;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-      line-height: 1.2;
-    }
-    
-    .course-name { 
-      font-size: 16px; 
-      color: #8B7355; 
-      margin: 20px 0;
-      font-weight: 400;
-      line-height: 1.4;
-      max-width: 600px;
-    }
-
-    .hidden { 
-      display: none !important; 
-    }
-    
-    /* Mobile Styles */
-    @media (max-width: 768px) {
-      body {
-        padding: 5px;
-      }
-      
-      .wrap { 
-        flex-direction: column; 
-        gap: 15px;
-      }
-      
-      .header h1 { 
-        font-size: 1.8rem; 
-      }
-      
-      .header p {
-        font-size: 1rem;
-      }
-      
-      .panel {
-        padding: 15px;
-      }
-      
-      .input-panel {
-        min-width: unset;
-        order: 1;
-      }
-      
-      .preview-panel {
-        order: 2;
-      }
-      
-      .certificate-container {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-      
-      #certificate { 
-        width: 600px;
-        height: 450px;
-        min-width: 600px;
-      }
-      
-      .cert-content {
-        padding: 30px 20px;
-      }
-      
-      .student-name { 
-        font-size: 24px; 
-      }
-      
-      .course-name { 
-        font-size: 14px; 
-      }
-      
-      .cert-presented-to {
-        font-size: 16px;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .header h1 { 
-        font-size: 1.5rem; 
-      }
-      
-      .panel {
-        padding: 12px;
-      }
-      
-      #certificate { 
-        width: 500px;
-        height: 375px;
-        min-width: 500px;
-      }
-      
-      .cert-content {
-        padding: 25px 15px;
-      }
-      
-      .student-name { 
-        font-size: 20px; 
-      }
-      
-      .course-name { 
-        font-size: 12px; 
-      }
-      
-      .cert-presented-to {
-        font-size: 14px;
-      }
-    }
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 20px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    h1 { text-align: center; margin-bottom: 20px; }
+    .wrap { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+    .panel { background: #fff; padding: 20px; border-radius: 10px; flex: 1; min-width: 300px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    input, select, button { width: 100%; padding: 10px; margin: 10px 0; }
+    button { cursor: pointer; background: #667eea; color: #fff; border: none; border-radius: 8px; font-size: 16px; }
+    .status { margin-top: 10px; font-weight: 600; }
+    .status.success { color: green; }
+    .status.error { color: red; }
+    #certificate { width: 800px; height: 600px; background: #fff; margin: 20px auto; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+    #certBg { position: absolute; top:0; left:0; width:100%; height:100%; object-fit: cover; z-index:0; }
+    .cert-content { position: relative; z-index:2; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:40px; }
+    .cert-presented-to { font-size: 18px; margin-bottom: 15px; }
+    .student-name { font-size: 36px; font-weight:700; color:#B8860B; margin:15px 0 30px; font-family: 'Brush Script MT', cursive; text-shadow:1px 1px 2px rgba(0,0,0,0.1); }
+    .course-name { font-size:16px; color:#8B7355; margin:20px 0; max-width:600px; }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="header">
-      <h1>🏆 Certificate Generator</h1>
-      <p>Enter your enrollment number to generate your certificate</p>
-    </div>
-
+    <h1>🏆 Event Registration & Certificate Generator</h1>
     <div class="wrap">
-      <!-- User Input Panel -->
-      <div class="panel input-panel">
-        <h2>Generate Your Certificate</h2>
-        <p>Enter your enrollment number below and we'll create your personalized certificate:</p>
-        
-        <div class="form-group">
-          <label for="enrollment">Enrollment Number</label>
-          <input id="enrollment" type="text" placeholder="e.g. A101" autocomplete="off" />
-        </div>
-
-        <button id="generateBtn" class="btn" onclick="generateCertificate()">
-          Generate Certificate
-        </button>
-        
-        <div id="status" class="status hidden"></div>
+      <!-- Registration & Enrollment Panel -->
+      <div class="panel">
+        <h2>Register & Generate Certificate</h2>
+        <input type="text" id="enrollment" placeholder="Enter Your Enrollment" />
+        <select id="eventSelect">
+          <option value="">Select Event</option>
+        </select>
+        <button id="registerBtn">Register & Generate Certificate</button>
+        <div class="status" id="status"></div>
       </div>
 
-      <div class="panel preview-panel">
-        <div class="certificate-container">
-          <div id="certificate">
-            <!-- Background certificate template image - UPDATE THIS PATH -->
-            <img id="certBg" src="template.png" alt="Certificate Template" />
-            
-            <div class="cert-content">
-              <!-- "is presented to" text -->
-              <div class="cert-presented-to">is presented to</div>
-              
-              <!-- Student name positioned below "is presented to" -->
-              <div class="student-name" id="certName">Student Name</div>
-              
-              <!-- Course description -->
-              <div class="course-name" id="certCourse">Course / Event Description</div>
-            </div>
+      <!-- Certificate Preview Panel -->
+      <div class="panel">
+        <div id="certificate">
+          <img id="certBg" src="template.png" alt="Certificate Background" />
+          <div class="cert-content">
+            <div class="cert-presented-to">is presented to</div>
+            <div class="student-name" id="certName">Student Name</div>
+            <div class="course-name" id="certCourse">Course / Event</div>
           </div>
         </div>
       </div>
@@ -342,92 +62,75 @@
 
   <script>
     /******************************
-     * CONFIG – REPLACE BELOW
+     * Supabase Configuration
      ******************************/
     const SUPABASE_URL = "https://zgcyqufccguiustbufkl.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpnY3lxdWZjY2d1aXVzdGJ1ZmtsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcwMDYwMDIsImV4cCI6MjA3MjU4MjAwMn0.JvgLWYQ4zh_uBA3gwznBQWEJV5_E9oRXnBukKMVtpZ8";
-
-    const { createClient } = supabase;
+     const { createClient } = supabase;
     const client = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    function showStatus(message, type) {
-      const statusEl = document.getElementById('status');
+    const eventSelect = document.getElementById('eventSelect');
+    const statusEl = document.getElementById('status');
+
+    function showStatus(message, type='') {
       statusEl.textContent = message;
-      statusEl.className = `status ${type}`;
-      statusEl.classList.remove('hidden');
+      statusEl.className = 'status ' + type;
     }
 
-    function hideStatus() {
-      document.getElementById('status').classList.add('hidden');
+    // Load events into dropdown
+    async function loadEvents() {
+      const { data: events, error } = await client.from('events').select('*');
+      if (error) { showStatus("Error loading events: " + error.message, 'error'); return; }
+      events.forEach(event => {
+        const option = document.createElement('option');
+        option.value = event.id;
+        option.textContent = `${event.event_name} (${event.event_date})`;
+        eventSelect.appendChild(option);
+      });
     }
+    loadEvents();
 
-    // Generate certificate
-    async function generateCertificate() {
+    // Handle Registration + Certificate Generation
+    document.getElementById('registerBtn').addEventListener('click', async () => {
       const enrollment = document.getElementById('enrollment').value.trim();
-      
-      if (!enrollment) {
-        showStatus('Please enter your enrollment number.', 'error');
-        return;
-      }
+      const event_id = eventSelect.value;
+      if(!enrollment || !event_id) { showStatus('Please fill all fields.', 'error'); return; }
 
-      showStatus('Fetching your details...', 'info');
+      showStatus('Registering...', 'info');
 
-      try {
-        const { data, error } = await client
-          .from("participants")
-          .select("name, course")
-          .eq("enrollment", enrollment)
-          .single();
+      // Insert into event_registrations
+      const { data: insertData, error: insertError } = await client
+        .from('event_registrations')
+        .insert([{ student_enrollment: enrollment, event_id: parseInt(event_id) }]);
+      if(insertError) { showStatus('Registration failed: ' + insertError.message, 'error'); return; }
 
-        if (error || !data) {
-          showStatus(`No record found for enrollment number: ${enrollment}`, 'error');
-          return;
-        }
+      // Fetch student details
+      const { data: studentData, error: studentError } = await client
+        .from('students')
+        .select('name, course')
+        .eq('enrollment', enrollment)
+        .single();
+      if(studentError || !studentData) { showStatus('Student not found.', 'error'); return; }
 
-        // Update certificate with user data
-        document.getElementById('certName').textContent = data.name;
-        document.getElementById('certCourse').textContent = data.course;
+      // Update certificate
+      document.getElementById('certName').textContent = studentData.name;
+      document.getElementById('certCourse').textContent = studentData.course + " | " + eventSelect.options[eventSelect.selectedIndex].text;
 
-        showStatus('Generating certificate...', 'info');
+      showStatus('Generating certificate...', 'info');
 
-        // Generate PDF after a short delay to ensure DOM is updated
-        setTimeout(() => {
+      // Generate PDF
+      setTimeout(() => {
+        html2canvas(document.getElementById('certificate'), { scale: 2 }).then(canvas => {
           const { jsPDF } = window.jspdf;
-          html2canvas(document.getElementById('certificate'), {
-            scale: 2,
-            useCORS: true,
-            allowTaint: true,
-            backgroundColor: null,
-            width: 800,
-            height: 600
-          }).then(canvas => {
-            const pdf = new jsPDF("l", "pt", [canvas.width, canvas.height]);
-            pdf.addImage(canvas.toDataURL("image/png"), "PNG", 0, 0, canvas.width, canvas.height);
-            pdf.save(`${data.name}_certificate.pdf`);
-            
-            showStatus('Certificate downloaded successfully! 🎉', 'success');
-          }).catch(error => {
-            console.error('PDF generation error:', error);
-            showStatus('Error generating PDF. Please try again.', 'error');
-          });
-        }, 1000);
-
-      } catch (error) {
-        console.error('Database error:', error);
-        showStatus('Error connecting to database. Please try again.', 'error');
-      }
-    }
-
-    // Handle Enter key in enrollment input
-    document.getElementById('enrollment').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        generateCertificate();
-      }
-    });
-
-    // Focus on input when page loads
-    window.addEventListener('load', function() {
-      document.getElementById('enrollment').focus();
+          const pdf = new jsPDF("l", "pt", [canvas.width, canvas.height]);
+          pdf.addImage(canvas.toDataURL("image/png"), "PNG", 0, 0, canvas.width, canvas.height);
+          pdf.save(`${studentData.name}_certificate.pdf`);
+          showStatus('Certificate downloaded! 🎉', 'success');
+        }).catch(err => {
+          showStatus('Error generating PDF.', 'error');
+          console.error(err);
+        });
+      }, 500);
     });
   </script>
 </body>
