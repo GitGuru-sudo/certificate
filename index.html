@@ -20,11 +20,9 @@
     <option value="">-- Select Event --</option>
   </select>
 
-  <button onclick="getCertificate()">Fetch</button>
-
   <div id="result" style="margin-top:20px; border:1px solid #ccc; padding:10px;"></div>
 
-  <!-- Download button -->
+  <!-- Only one button for download -->
   <button onclick="downloadCertificate()">Download Certificate</button>
 
   <!-- Hidden certificate render area -->
@@ -42,7 +40,6 @@
     // ✅ Replace with your Supabase project credentials
     const SUPABASE_URL = "https://zgcyqufccguiustbufkl.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpnY3lxdWZjY2d1aXVzdGJ1ZmtsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcwMDYwMDIsImV4cCI6MjA3MjU4MjAwMn0.JvgLWYQ4zh_uBA3gwznBQWEJV5_E9oRXnBukKMVtpZ8";
-
 
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -66,8 +63,8 @@
       });
     }
 
-    // Fetch student + validate event
-    async function getCertificate() {
+    // Download certificate as PDF (fetches data and generates PDF)
+    async function downloadCertificate() {
       const enrollment = document.getElementById("enrollment").value.trim();
       const eventName = document.getElementById("eventDropdown").value.trim();
 
@@ -76,7 +73,7 @@
         return;
       }
 
-      // 1. Validate event exists
+      // Validate event exists
       const { data: event, error: eventError } = await supabaseClient
         .from("events")
         .select("id")
@@ -88,42 +85,7 @@
         return;
       }
 
-      // 2. Fetch student (only name + course)
-      const { data: student, error: studentError } = await supabaseClient
-        .from("students")
-        .select("name, course")
-        .eq("enrollment", enrollment)
-        .single();
-
-      if (studentError || !student) {
-        document.getElementById("result").innerHTML = `<p style="color:red">Student not found</p>`;
-        return;
-      }
-
-      // ✅ Show result
-      document.getElementById("result").innerHTML = `
-        <h3>Certificate Data</h3>
-        <p><b>Name:</b> ${student.name}</p>
-        <p><b>Course:</b> ${student.course}</p>
-      `;
-
-      // Update certificate preview
-      document.getElementById("certName").textContent = student.name;
-      document.getElementById("certCourse").textContent = student.course;
-      document.getElementById("certificateArea").style.display = "block";
-    }
-
-    // Download certificate as PDF
-    async function downloadCertificate() {
-      const enrollment = document.getElementById("enrollment").value.trim();
-      const eventName = document.getElementById("eventDropdown").value.trim();
-
-      if (!enrollment || !eventName) {
-        document.getElementById("result").innerHTML = `<p style="color:red">Please enter enrollment and select event</p>`;
-        return;
-      }
-
-      // Fetch student
+      // Fetch student (only name + course)
       const { data: student, error: studentError } = await supabaseClient
         .from("students")
         .select("name, course")
