@@ -1,102 +1,149 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Event Registration</title>
-</head>
-<body>
-  <h2>Register for Event</h2>
-  <form id="registrationForm">
-    <label>Enrollment:</label><br>
-    <input type="text" id="enrollment" required><br><br>
-
-    <label>Event Name:</label><br>
-    <select id="event_name" required>
-      <option value="">Select Event</option>
-    </select><br><br>
-
-    <button type="submit">Register</button>
-  </form>
-
-  <p id="message"></p>
+  <meta charset="utf-8" />
+  <title>Certificate Generator</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
 
   <!-- Supabase JS -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.min.js"></script>
+  <!-- html2canvas and jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 20px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    h1 { text-align: center; margin-bottom: 20px; }
+    .wrap { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+    .panel { background: #fff; padding: 20px; border-radius: 10px; flex: 1; min-width: 300px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    input, select, button { width: 100%; padding: 10px; margin: 10px 0; }
+    button { cursor: pointer; background: #667eea; color: #fff; border: none; border-radius: 8px; font-size: 16px; }
+    .status { margin-top: 10px; font-weight: 600; }
+    .status.success { color: green; }
+    .status.error { color: red; }
+    #certificate { width: 800px; height: 600px; background: #fff; margin: 20px auto; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+    #certBg { position: absolute; top:0; left:0; width:100%; height:100%; object-fit: cover; z-index:0; }
+    .cert-content { position: relative; z-index:2; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:40px; }
+    .cert-presented-to { font-size: 18px; margin-bottom: 15px; }
+    .student-name { font-size: 36px; font-weight:700; color:#B8860B; margin:15px 0 30px; font-family: 'Brush Script MT', cursive; text-shadow:1px 1px 2px rgba(0,0,0,0.1); }
+    .course-name { font-size:16px; color:#8B7355; margin:20px 0; max-width:600px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🏆 Event Registration & Certificate Generator</h1>
+    <div class="wrap">
+      <!-- Registration & Enrollment Panel -->
+      <div class="panel">
+        <h2>Register & Generate Certificate</h2>
+        <input type="text" id="enrollment" placeholder="Enter Your Enrollment" />
+        <select id="eventSelect">
+          <option value="">Select Event</option>
+        </select>
+        <button id="registerBtn">Register & Generate Certificate</button>
+        <div class="status" id="status"></div>
+      </div>
+
+      <!-- Certificate Preview Panel -->
+      <div class="panel">
+        <div id="certificate">
+          <img id="certBg" src="template.png" alt="Certificate Background" />
+          <div class="cert-content">
+            <div class="cert-presented-to">is presented to</div>
+            <div class="student-name" id="certName">Student Name</div>
+            <div class="course-name" id="certCourse">Course / Event</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
-    const SUPABASE_URL = "https://zgcyqufccguiustbufkl.supabase.co";
-   const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpnY3lxdWZjY2d1aXVzdGJ1ZmtsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcwMDYwMDIsImV4cCI6MjA3MjU4MjAwMn0.JvgLWYQ4zh_uBA3gwznBQWEJV5_E9oRXnBukKMVtpZ8";
-    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    /******************************
+     * Supabase Configuration
+     ******************************/
+   /******************************
+ * Supabase Configuration
+ ******************************/
+const SUPABASE_URL = "https://zgcyqufccguiustbufkl.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpnY3lxdWZjY2d1aXVzdGJ1ZmtsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcwMDYwMDIsImV4cCI6MjA3MjU4MjAwMn0.JvgLWYQ4zh_uBA3gwznBQWEJV5_E9oRXnBukKMVtpZ8";
 
-    const form = document.getElementById("registrationForm");
-    const message = document.getElementById("message");
-    const eventSelect = document.getElementById("event_name");
+ const { createClient } = supabase;
+const client = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    // Fetch events to populate dropdown
-    async function loadEvents() {
-      const { data: events, error } = await supabase
-        .from('events')
-        .select('id, event_name');
-      if (!error) {
-        events.forEach(event => {
-          const option = document.createElement('option');
-          option.value = event.id;
-          option.textContent = event.event_name;
-          eventSelect.appendChild(option);
-        });
-      }
-    }
+const eventSelect = document.getElementById('eventSelect');
+const statusEl = document.getElementById('status');
 
-    loadEvents();
+function showStatus(message, type='') {
+  statusEl.textContent = message;
+  statusEl.className = 'status ' + type;
+}
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+// Load events into dropdown
+async function loadEvents() {
+  const { data: events, error } = await client.from('events').select('*');
+  if (error) { showStatus("Error loading events: " + error.message, 'error'); return; }
+  events.forEach(event => {
+    const option = document.createElement('option');
+    option.value = event.id;
+    option.textContent = `${event.event_name} (${event.event_date})`;
+    eventSelect.appendChild(option);
+  });
+}
+loadEvents();
 
-      const enrollment = document.getElementById("enrollment").value;
-      const event_id = parseInt(eventSelect.value);
+// Handle Registration + Certificate Generation
+document.getElementById('registerBtn').addEventListener('click', async () => {
+  const enrollment = document.getElementById('enrollment').value.trim();
+  const event_id = eventSelect.value;
+  if(!enrollment || !event_id) { showStatus('Please fill all fields.', 'error'); return; }
 
-      if (!event_id) {
-        message.style.color = "red";
-        message.textContent = "Please select an event.";
-        return;
-      }
+  showStatus('Fetching student details...', 'info');
 
-      // Fetch student name and course
-      const { data: studentData, error: fetchError } = await supabase
-        .from('students')
-        .select('name, course')
-        .eq('enrollment', enrollment)
-        .single();
+  // Step 1: Fetch student name & course
+  const { data: studentData, error: studentError } = await client
+    .from('students')
+    .select('name, course')
+    .eq('enrollment', enrollment)
+    .single();
 
-      if (fetchError) {
-        message.style.color = "red";
-        message.textContent = "Student not found!";
-        return;
-      }
+  if(studentError || !studentData) { showStatus('Student not found.', 'error'); return; }
 
-      const { name, course } = studentData;
+  // Step 2: Insert registration
+  const { data: insertData, error: insertError } = await client
+    .from('event_registrations')
+    .insert([{
+      student_name: studentData.name,
+      enrollment: enrollment,
+      course: studentData.course,
+      event_id: parseInt(event_id)
+    }]);
 
-      // Insert into event_registrations
-      const { data, error } = await supabase
-        .from('event_registrations')
-        .insert([
-          {
-            student_name: name,
-            enrollment: enrollment,
-            course: course,
-            event_id: event_id
-          }
-        ]);
+  if(insertError) { showStatus('Registration failed: ' + insertError.message, 'error'); return; }
 
-      if (error) {
-        message.style.color = "red";
-        message.textContent = "Registration failed: " + error.message;
-      } else {
-        message.style.color = "green";
-        message.textContent = "Registration successful!";
-        form.reset();
-      }
+  showStatus('Generating certificate...', 'info');
+
+  // Step 3: Update certificate preview
+  document.getElementById('certName').textContent = studentData.name;
+  document.getElementById('certCourse').textContent = studentData.course + " | " + eventSelect.options[eventSelect.selectedIndex].text;
+
+  // Step 4: Generate PDF
+  setTimeout(() => {
+    html2canvas(document.getElementById('certificate'), { scale: 2 }).then(canvas => {
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF("l", "pt", [canvas.width, canvas.height]);
+      pdf.addImage(canvas.toDataURL("image/png"), "PNG", 0, 0, canvas.width, canvas.height);
+      pdf.save(`${studentData.name}_certificate.pdf`);
+      showStatus('Certificate downloaded! 🎉', 'success');
+    }).catch(err => {
+      showStatus('Error generating PDF.', 'error');
+      console.error(err);
     });
+  }, 500);
+});
+
   </script>
 </body>
-</html>
+</html>  make logic this only
