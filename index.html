@@ -4,6 +4,10 @@
   <meta charset="utf-8" />
   <title>Certificate Lookup</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- JS libraries for PDF export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
   <h2>Get Certificate Data</h2>
@@ -19,6 +23,18 @@
   <button onclick="getCertificate()">Fetch</button>
 
   <div id="result" style="margin-top:20px; border:1px solid #ccc; padding:10px;"></div>
+
+  <!-- Download button -->
+  <button onclick="downloadCertificate()">Download Certificate</button>
+
+  <!-- Hidden certificate render area -->
+  <div id="certificateArea" style="position:relative;width:800px;height:600px;display:none;">
+    <img id="certTemplate" src="template.png" style="position:absolute;top:0;left:0;width:800px;height:600px;"/>
+    <div id="certText" style="position:absolute;top:250px;left:0;width:800px;text-align:center;">
+      <div id="certName" style="font-size:32px;font-weight:bold;color:#222;"></div>
+      <div id="certCourse" style="font-size:24px;color:#444;margin-top:16px;"></div>
+    </div>
+  </div>
 
   <!-- Supabase JS -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.min.js"></script>
@@ -90,6 +106,57 @@
         <p><b>Name:</b> ${student.name}</p>
         <p><b>Course:</b> ${student.course}</p>
       `;
+
+      // Update certificate preview
+      document.getElementById("certName").textContent = student.name;
+      document.getElementById("certCourse").textContent = student.course;
+      document.getElementById("certificateArea").style.display = "block";
+    }
+
+    // Download certificate as PDF
+    async function downloadCertificate() {
+      const enrollment = document.getElementById("enrollment").value.trim();
+      const eventName = document.getElementById("eventDropdown").value.trim();
+
+      if (!enrollment || !eventName) {
+        document.getElementById("result").innerHTML = `<p style="color:red">Please enter enrollment and select event</p>`;
+        return;
+      }
+
+      // Fetch student
+      const { data: student, error: studentError } = await supabaseClient
+        .from("students")
+        .select("name, course")
+        .eq("enrollment", enrollment)
+        .single();
+
+      if (studentError || !student) {
+        document.getElementById("result").innerHTML = `<p style="color:red">Student not found</p>`;
+        return;
+      }
+
+      // Set certificate text
+      document.getElementById("certName").textContent = student.name;
+      document.getElementById("certCourse").textContent = student.course;
+
+      // Wait for image to load
+      const img = document.getElementById("certTemplate");
+      if (!img.complete) {
+        await new Promise(resolve => { img.onload = resolve; });
+      }
+
+      // Show certificate area for rendering
+      const certArea = document.getElementById("certificateArea");
+      certArea.style.display = "block";
+
+      // Render to canvas and download PDF
+      html2canvas(certArea).then(canvas => {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF("l", "pt", [canvas.width, canvas.height]);
+        pdf.addImage(canvas.toDataURL("image/png"), "PNG", 0, 0, canvas.width, canvas.height);
+        pdf.save(`${student.name}_certificate.pdf`);
+        certArea.style.display = "none";
+      });
     }
 
     // Load events when page starts
