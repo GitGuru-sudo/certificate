@@ -313,10 +313,8 @@
     <section class="py-20 bg-gradient-to-br from-gray-900 to-black relative">
       <section id="certificate" class="mb-16" data-aos="zoom-in">
         <div class="panel relative overflow-hidden border-2 border-blue-500/30 shadow-2xl rounded-2xl transition-all duration-300 hover:border-purple-500/60" data-aos="fade-up">
-            <div class="absolute -top-10 -left-10 w-40 h-40 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-full blur-2xl"></div>
-            <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-gradient-to-br from-purple-500/30 to-blue-500/30 rounded-full blur-2xl"></div>
             <div class="container mx-auto flex flex-col lg:flex-row gap-12 items-center justify-center">
-                <!-- Registration & Enrollment Panel -->
+                <!-- Registration Panel -->
                 <div class="panel bg-gray-800 bg-opacity-80 rounded-2xl p-8 shadow-xl mb-8 lg:mb-0 w-full max-w-md">
                   
                     <h2 class="text-2xl font-bold text-white mb-6">Register & Generate Certificate</h2>
@@ -330,7 +328,15 @@
                     <div class="status mt-4" id="status"></div>
                 </div>
 
-                            </div>
+                <!-- Certificate Preview -->
+                <div class="cert-content">
+                    <h2 class="text-3xl font-bold mb-2">Certificate of Completion</h2>
+                    <p class="mb-4">This certificate is proudly presented to</p>
+                    <div class="text-2xl font-bold mb-2" id="certName">[Name]</div>
+                    <div class="text-lg mb-2" id="certCourse">[Course/Event]</div>
+                    <div class="mt-4 text-sm text-gray-700">Date: <span id="certDate"></span></div>
+                    <div class="mt-2 text-sm text-gray-700">Certificate ID: <span id="certId"></span></div>
+                </div>
                           
         </div>
       </section>
@@ -591,7 +597,7 @@
 
         async function generateCertificate() {
             const enrollment = document.getElementById('enrollment').value.trim();
-            const event = document.getElementById('event').value;
+            const event = document.getElementById('eventSelect').value;
             const spinner = document.getElementById('spinner');
             const btnText = document.getElementById('btnText');
             spinner.classList.remove('hidden');
@@ -708,6 +714,8 @@
             // Step 3: Update certificate preview
             document.getElementById('certName').textContent = studentData.name;
             document.getElementById('certCourse').textContent = studentData.course + " | " + eventSelect.options[eventSelect.selectedIndex].text;
+            document.getElementById('certDate').textContent = new Date().toLocaleDateString();
+            document.getElementById('certId').textContent = "TECH-" + Math.floor(Math.random() * 100000);
 
             // Step 4: Generate PDF
             setTimeout(() => {
