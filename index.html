@@ -63,33 +63,35 @@
         <div class="container mx-auto px-4 py-3">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-2">
-                    <a href="index.html" class="flex items-center space-x-2 group">
-                        <img src="assets/images/logo.png" alt="Techनिकी Logo" class="h-8 w-auto transition-transform duration-300 group-hover:scale-110">
+                    <a href="index" class="flex items-center space-x-2 group">
+                        <img src="assets/images/logo/logo.png" alt="Techनिकी Logo" class="h-8 w-auto transition-transform duration-300 group-hover:scale-110">
                         <span class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">Techनिकी</span>
                     </a>
                 </div>
+                
                 <div class="hidden lg:flex items-center space-x-6">
-                    <a href="events.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
+                    <a href="/pages/events.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
                         <i class="fas fa-calendar-alt mr-1"></i>Events
                     </a>
-                    <a href="certificates.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
+                    <a href="/pages/certificates.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
                         <i class="fas fa-certificate mr-1"></i>Certificates
                     </a>
-                    <a href="team.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
+                    <a href="/pages/team.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
                         <i class="fas fa-users mr-1"></i>Team
                     </a>
-                    <a href="blog.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
+                    <a href="/pages/blog.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
                         <i class="fas fa-blog mr-1"></i>Blog
                     </a>
-                    <a href="projects.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
+                    <a href="/pages/projects.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
                         <i class="fas fa-project-diagram mr-1"></i>Projects
                     </a>
-                    <a href="form.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
+                    <a href="/pages/form.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
                         <i class="fas fa-envelope mr-1"></i>Contact
                     </a>
                 </div>
+                
                 <div class="flex items-center space-x-3">
-                    <a href="form.html" class="join-btn bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full font-semibold transition-all duration-300 hover:from-purple-600 hover:to-blue-500 hover:scale-105 shadow-lg hover:shadow-xl text-sm hidden sm:block">
+                    <a href="/pages/form.html" class="join-btn bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full font-semibold transition-all duration-300 hover:from-purple-600 hover:to-blue-500 hover:scale-105 shadow-lg hover:shadow-xl text-sm hidden sm:block">
                         <i class="fas fa-rocket mr-1"></i>JOIN NOW
                     </a>
                     <button class="lg:hidden text-white hover:text-blue-400 transition-colors focus:outline-none" id="menu-button" aria-label="Toggle menu">
@@ -98,41 +100,39 @@
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="lg:hidden bg-black bg-opacity-95 backdrop-blur-lg transform -translate-y-full transition-transform duration-300">
-            <div class="container mx-auto px-6 py-8">
-                <button class="absolute top-5 right-5 text-white text-2xl" id="close-menu">
-                    <i class="fas fa-times"></i>
-                </button>
-                <div class="flex flex-col space-y-6 mt-10">
-                    <a href="index.html" class="text-white hover:text-blue-400 transition-colors text-lg">
-                        <i class="fas fa-home mr-3" aria-hidden="true"></i>Home
-                    </a>
-                    <a href="events.html" class="text-white hover:text-blue-400 transition-colors text-lg">
-                        <i class="fas fa-calendar-alt mr-3" aria-hidden="true"></i>Events
-                    </a>
-                    <a href="certificates.html" class="text-white hover:text-blue-400 transition-colors text-lg">
-                        <i class="fas fa-certificate mr-3" aria-hidden="true"></i>Certificates
-                    </a>
-                    <a href="team.html" class="text-white hover:text-blue-400 transition-colors text-lg">
-                        <i class="fas fa-users mr-3" aria-hidden="true"></i>Team
-                    </a>
-                    <a href="blog.html" class="text-blue-400 hover:text-blue-300 transition-colors text-lg">
-                        <i class="fas fa-blog mr-3" aria-hidden="true"></i>Blog
-                    </a>
-                    <a href="projects.html" class="text-white hover:text-blue-400 transition-colors text-lg">
-                        <i class="fas fa-project-diagram mr-3" aria-hidden="true"></i>Projects
-                    </a>
-                    <a href="form.html" class="text-white hover:text-blue-400 transition-colors text-lg">
-                        <i class="fas fa-envelope mr-3" aria-hidden="true"></i>Contact
-                    </a>
-                    <a href="form.html" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-full font-semibold text-center transition-all duration-300 hover:scale-105 mt-4">
-                        <i class="fas fa-rocket mr-2"></i>JOIN NOW
-                    </a>
-                </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden bg-black bg-opacity-95 backdrop-blur-lg fixed top-0 left-0 w-full h-full z-40 transition-transform duration-300 mobile-menu-closed overflow-y-auto">
+        <div class="container mx-auto px-6 py-20">
+            <button class="absolute top-5 right-5 text-white text-2xl" id="close-menu">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="flex flex-col space-y-8 mt-10">
+                <a href="/pages/events.html" class="text-white hover:text-blue-400 transition-colors text-xl py-2 border-b border-gray-700">
+                    <i class="fas fa-calendar-alt mr-3"></i>Events
+                </a>
+                <a href="/pages/certificates.html" class="text-white hover:text-blue-400 transition-colors text-xl py-2 border-b border-gray-700">
+                    <i class="fas fa-certificate mr-3"></i>Certificates
+                </a>
+                <a href="/pages/team.html" class="text-white hover:text-blue-400 transition-colors text-xl py-2 border-b border-gray-700">
+                    <i class="fas fa-users mr-3"></i>Team
+                </a>
+                <a href="/pages/blog.html" class="text-white hover:text-blue-400 transition-colors text-xl py-2 border-b border-gray-700">
+                    <i class="fas fa-blog mr-3"></i>Blog
+                </a>
+                <a href="/pages/projects.html" class="text-white hover:text-blue-400 transition-colors text-xl py-2 border-b border-gray-700">
+                    <i class="fas fa-project-diagram mr-3"></i>Projects
+                </a>
+                <a href="/pages/form.html" class="text-white hover:text-blue-400 transition-colors text-xl py-2 border-b border-gray-700">
+                    <i class="fas fa-envelope mr-3"></i>Contact
+                </a>
+                <a href="/pages/form.html" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-full font-semibold text-center transition-all duration-300 hover:scale-105 mt-4">
+                    <i class="fas fa-rocket mr-2"></i>JOIN NOW
+                </a>
             </div>
         </div>
-    </nav>
+    </div>
 
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center pt-20">
@@ -204,6 +204,7 @@
                 <input type="text" id="enrollment" placeholder="Enter Enrollment ID" class="bg-gray-700 text-white rounded-lg px-4 py-3 w-full max-w-md" />
                 <select id="eventDropdown" class="bg-gray-700 text-white rounded-lg px-4 py-3 w-full max-w-md">
                     <option value="">-- Select Event --</option>
+                    <!-- Options will be loaded by JS -->
                 </select>
                 <button onclick="downloadCertificate()" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg w-full max-w-md">
                     Download Certificate
@@ -213,12 +214,14 @@
             <!-- Hidden certificate render area -->
             <div id="certificateArea" style="position:relative;width:800px;height:600px;display:none;margin:auto;">
                 <img id="certTemplate" src="template.png" style="position:absolute;top:0;left:0;width:800px;height:600px;"/>
-                <div id="certText" style="position:absolute;top:250px;left:0;width:800px;text-align:center;">
-                    <div id="certName" style="font-size:32px;font-weight:bold;color:#222;"></div>
-                    <div id="certCourse" style="font-size:24px;color:#444;margin-top:16px;"></div>
+                <!-- Name only -->
+                <div id="certName"
+                     style="position:absolute;top:260px;left:0;width:800px;text-align:center;
+                            font-size:36px;font-weight:700;color:#2d3748;
+                            font-family:'Inter',serif;letter-spacing:2px;">
                 </div>
             </div>
-        </section>
+        </div>
         </div>
     </section>
 
@@ -482,22 +485,10 @@
                 return;
             }
 
-            // Validate event exists
-            const { data: event, error: eventError } = await supabaseClient
-                .from("events")
-                .select("id")
-                .eq("event_name", eventName)
-                .single();
-
-            if (eventError || !event) {
-                document.getElementById("result").innerHTML = `<p style="color:red">Event not found</p>`;
-                return;
-            }
-
-            // Fetch student (only name + course)
+            // Fetch student (only name)
             const { data: student, error: studentError } = await supabaseClient
                 .from("students")
-                .select("name, course")
+                .select("name")
                 .eq("enrollment", enrollment)
                 .single();
 
@@ -506,9 +497,8 @@
                 return;
             }
 
-            // Set certificate text
+            // Set certificate text (name only)
             document.getElementById("certName").textContent = student.name;
-            document.getElementById("certCourse").textContent = student.course;
 
             // Wait for image to load
             const img = document.getElementById("certTemplate");
