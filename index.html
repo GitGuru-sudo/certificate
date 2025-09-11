@@ -4,68 +4,167 @@
   <meta charset="utf-8" />
   <title>Team Registration</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; max-width:800px; margin:30px auto; padding:0 16px; }
+    label { display:block; font-weight:600; margin-top:10px; }
+    input[type="text"], textarea, select { width:100%; padding:8px; margin-top:6px; box-sizing:border-box; }
+    button { margin-top:14px; padding:10px 16px; border:none; background:#2563eb; color:white; border-radius:6px; cursor:pointer; }
+    .muted { color:#555; font-size:0.9rem; }
+    #result { margin-top:14px; padding:12px; border-radius:8px; display:none; }
+    #result.success { background:#ecfdf5; color:#065f46; border:1px solid #bbf7d0; }
+    #result.error { background:#ffefef; color:#7f1d1d; border:1px solid #fca5a5; }
+  </style>
 </head>
 <body>
-  <h2>Team Registration Form</h2>
-  
+  <h1>Team Registration</h1>
+  <p class="muted">Fill details. <strong>Idea</strong> is mandatory paragraph. Team lead + at least one team member required.</p>
+
   <form id="regForm">
-    <label>Team Name:</label>
-    <input type="text" id="team_name" required><br><br>
+    <label>Team Name</label>
+    <input type="text" id="team_name" required>
 
-    <label>Team Lead:</label>
-    <input type="text" id="team_lead" required><br><br>
+    <label>Team Idea (paragraph)</label>
+    <textarea id="idea" rows="4" required></textarea>
 
-    <label>Team Member 1:</label>
-    <input type="text" id="team_member1" required><br><br>
+    <label>Team Lead Name</label>
+    <input type="text" id="team_lead_name" required>
 
-    <label>Team Member 2:</label>
-    <input type="text" id="team_member2"><br><br>
+    <label>Team Lead Course</label>
+    <input type="text" id="team_lead_course" required>
 
-    <label>Team Member 3:</label>
-    <input type="text" id="team_member3"><br><br>
+    <hr>
 
-    <label>Team Member 4:</label>
-    <input type="text" id="team_member4"><br><br>
+    <label>Team Member 2 Name (required)</label>
+    <input type="text" id="team_member2_name" required>
 
-    <label>Team Member 5:</label>
-    <input type="text" id="team_member5"><br><br>
+    <label>Team Member 2 Course (required)</label>
+    <input type="text" id="team_member2_course" required>
 
-    <button type="submit">Submit</button>
+    <label>Team Member 3 Name (optional)</label>
+    <input type="text" id="team_member3_name">
+
+    <label>Team Member 3 Course (optional)</label>
+    <input type="text" id="team_member3_course">
+
+    <label>Team Member 4 Name (optional)</label>
+    <input type="text" id="team_member4_name">
+
+    <label>Team Member 4 Course (optional)</label>
+    <input type="text" id="team_member4_course">
+
+    <label>Team Member 5 Name (optional)</label>
+    <input type="text" id="team_member5_name">
+
+    <label>Team Member 5 Course (optional)</label>
+    <input type="text" id="team_member5_course">
+
+    <label>Team Member 6 Name (optional)</label>
+    <input type="text" id="team_member6_name">
+
+    <label>Team Member 6 Course (optional)</label>
+    <input type="text" id="team_member6_course">
+
+    <button type="submit">Register Team</button>
   </form>
 
-  <!-- Supabase JS -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <div id="result"></div>
+
+  <!-- Supabase JS (UMD) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.min.js"></script>
+
   <script>
-    const SUPABASE_URL = "https://zgcyqufccguiustbufkl.supabase.co";
+    // ---------- CONFIGURE THESE ----------
+   const SUPABASE_URL = "https://zgcyqufccguiustbufkl.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpnY3lxdWZjY2d1aXVzdGJ1ZmtsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcwMDYwMDIsImV4cCI6MjA3MjU4MjAwMn0.JvgLWYQ4zh_uBA3gwznBQWEJV5_E9oRXnBukKMVtpZ8";
 
-    const { createClient } = supabase;
-    const client = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/YOUR_DEPLOY_ID/exec"; // replace with your Apps Script web app URL (see below)
+    // -------------------------------------
 
-    document.getElementById("regForm").addEventListener("submit", async (e) => {
+    const { createClient } = supabase;
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const form = document.getElementById('regForm');
+    const resultBox = document.getElementById('result');
+
+    function showResult(msg, ok=true) {
+      resultBox.style.display = 'block';
+      resultBox.className = ok ? 'success' : 'error';
+      resultBox.innerHTML = msg;
+    }
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const teamData = {
-        team_name: document.getElementById("team_name").value,
-        team_lead: document.getElementById("team_lead").value,
-        team_member1: document.getElementById("team_member1").value,
-        team_member2: document.getElementById("team_member2").value || null,
-        team_member3: document.getElementById("team_member3").value || null,
-        team_member4: document.getElementById("team_member4").value || null,
-        team_member5: document.getElementById("team_member5").value || null
+      // build payload
+      const payload = {
+        team_name: document.getElementById("team_name").value.trim(),
+        idea: document.getElementById("idea").value.trim(),
+
+        team_lead_name: document.getElementById("team_lead_name").value.trim(),
+        team_lead_course: document.getElementById("team_lead_course").value.trim(),
+
+        team_member2_name: document.getElementById("team_member2_name").value.trim(),
+        team_member2_course: document.getElementById("team_member2_course").value.trim(),
+
+        team_member3_name: document.getElementById("team_member3_name").value.trim() || null,
+        team_member3_course: document.getElementById("team_member3_course").value.trim() || null,
+
+        team_member4_name: document.getElementById("team_member4_name").value.trim() || null,
+        team_member4_course: document.getElementById("team_member4_course").value.trim() || null,
+
+        team_member5_name: document.getElementById("team_member5_name").value.trim() || null,
+        team_member5_course: document.getElementById("team_member5_course").value.trim() || null,
+
+        team_member6_name: document.getElementById("team_member6_name").value.trim() || null,
+        team_member6_course: document.getElementById("team_member6_course").value.trim() || null
       };
 
-      const { data, error } = await client
-        .from("registration")
-        .insert([teamData]);
+      // Basic client-side validation (in addition to NOT NULL in DB)
+      if (!payload.team_name || !payload.idea || !payload.team_lead_name || !payload.team_lead_course
+          || !payload.team_member2_name || !payload.team_member2_course) {
+        showResult("Please fill all required fields (team name, idea, team lead, and at least one member).", false);
+        return;
+      }
 
-      if (error) {
-        alert("Error: " + error.message);
-        console.error(error);
-      } else {
-        alert("✅ Team Registered Successfully!");
-        console.log("Inserted:", data);
-        document.getElementById("regForm").reset();
+      try {
+        // Insert into Supabase
+        const { data, error } = await supabase
+          .from('registration')
+          .insert([payload]);
+
+        if (error) {
+          console.error("Supabase insert error:", error);
+          showResult("Error inserting into database: " + error.message, false);
+          return;
+        }
+
+        // Success in DB. Now request Apps Script to create a Google Sheet.
+        // If you don't want a sheet generated, skip this step.
+        try {
+          const appsResp = await fetch(APPS_SCRIPT_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          const appsJson = await appsResp.json();
+          if (appsResp.ok && appsJson.sheetUrl) {
+            showResult(`<strong>Team Registered ✅</strong><br>Google Sheet created: <a href="${appsJson.sheetUrl}" target="_blank">${appsJson.sheetUrl}</a>`);
+            form.reset();
+          } else {
+            console.warn('Apps Script error:', appsJson);
+            showResult("Team Registered, but failed to create Google Sheet. Insert OK.", true);
+            form.reset();
+          }
+        } catch (err) {
+          console.error("Apps Script call failed:", err);
+          showResult("Team Registered, but could not call Google Sheet creation endpoint.", true);
+          form.reset();
+        }
+
+      } catch (err) {
+        console.error(err);
+        showResult("Unexpected error: " + err.message, false);
       }
     });
   </script>
