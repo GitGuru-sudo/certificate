@@ -34,12 +34,13 @@
   </form>
 
   <!-- Supabase JS -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script>
     const SUPABASE_URL = "https://zgcyqufccguiustbufkl.supabase.co";
-        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpnY3lxdWZjY2d1aXVzdGJ1ZmtsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcwMDYwMDIsImV4cCI6MjA3MjU4MjAwMn0.JvgLWYQ4zh_uBA3gwznBQWEJV5_E9oRXnBukKMVtpZ8";
-       
-    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpnY3lxdWZjY2d1aXVzdGJ1ZmtsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcwMDYwMDIsImV4cCI6MjA3MjU4MjAwMn0.JvgLWYQ4zh_uBA3gwznBQWEJV5_E9oRXnBukKMVtpZ8";
+
+    const { createClient } = supabase;
+    const client = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     document.getElementById("regForm").addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -54,14 +55,16 @@
         team_member5: document.getElementById("team_member5").value || null
       };
 
-      const { data, error } = await supabase
+      const { data, error } = await client
         .from("registration")
         .insert([teamData]);
 
       if (error) {
         alert("Error: " + error.message);
+        console.error(error);
       } else {
-        alert("Team Registered Successfully!");
+        alert("✅ Team Registered Successfully!");
+        console.log("Inserted:", data);
         document.getElementById("regForm").reset();
       }
     });
