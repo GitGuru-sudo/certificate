@@ -3,368 +3,778 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Techniki</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: #0a0f1c;
-      color: #fff;
-      line-height: 1.6;
-    }
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>/* Reset and base styles */
 
-    header {
-      background: #111a2f;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-    }
+/* CSS Variables */
+:root {
+  --electric-border-color: #00fffb;
+  --electric-light-color: oklch(from var(--electric-border-color) l c h);
+  --gradient-color: oklch(
+    from var(--electric-border-color) 0.3 calc(c / 2) h / 0.4
+  );
+  --color-neutral-900: oklch(0.185 0 0);
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.6rem;
-      font-weight: bold;
-      color: #00bfff;
-    }
+  --electric-border-color1: #f2ff00;
+  --electric-light-color1: oklch(from var(--electric-border-color1) l c h);
+  --gradient-color1: oklch(
+    from var(--electric-border-color1) 0.3 calc(c / 2) h / 0.4
+  );
+  --color-neutral-9001: oklch(0.185 0 0);
+}
 
-    .logo img {
-      height: 70px;
-      width: auto;
-      border-radius: 12px;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    .hero {
-      background: linear-gradient(135deg, #6a5acd, #00bfff);
-      padding: 4rem 2rem;
-      text-align: center;
-      color: white;
-      border-radius: 0 0 50px 50px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-    }
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #151f28;
+  color: oklch(0.985 0 0);
+  height: 100vh;
+  overflow: hidden;
+}
 
-    .hero h1 { font-size: 3rem; margin-bottom: 0.5rem; }
-    .hero p { font-size: 1.2rem; opacity: 0.95; }
+/* Main container */
+.main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 90px;
+  justify-content: center;
+  height: 100vh;
+}
 
-    .section-title {
-      text-align: center;
-      font-size: 2.2rem;
-      margin: 2rem 0 1.5rem;
-      color: #00bfff;
-      text-shadow: 0 0 10px rgba(0,191,255,0.5);
-    }
+/* SVG positioning */
+.svg-container {
+  position: absolute;
+}
 
-    .register { padding: 2rem; }
+/* Card container */
+.card-container {
+     cursor: pointer;
+  padding: 2px;
+  border-radius: 24px;
+  position: relative;
+  background: linear-gradient(
+      -30deg,
+      var(--gradient-color),
+      transparent,
+      var(--gradient-color)
+    ),
+    linear-gradient(
+      to bottom,
+      var(--color-neutral-900),
+      var(--color-neutral-900)
+    );
+}
 
-    .register-form {
-      max-width: 850px;
-      margin: auto;
-      background: #1a2545;
-      padding: 2.5rem;
-      border-radius: 20px;
-      box-shadow: 0 0 25px rgba(0,191,255,0.25);
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      transition: transform 0.2s, box-shadow 0.3s;
-    }
 
-    .register-form:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 35px rgba(0,191,255,0.4);
-    }
 
-    .register-form label {
-      font-size: 1.1rem;
-      color: #aad4ff;
-      margin-bottom: 0.3rem;
-      display: block;
-    }
+/* Inner container */
+.inner-container {
+  position: relative;
+}
 
-    .register-form input, 
-    .register-form textarea {
-      padding: 12px;
-      border-radius: 10px;
-      border: none;
-      outline: none;
-      width: 100%;
-      font-family: inherit;
-      font-size: 1rem;
-      background: #0f1733;
-      color: #fff;
-      transition: 0.3s;
-    }
+/* Border layers */
+.border-outer {
+  border: 2px solid  #00fffb;
+  border-radius: 24px;
+  padding-right: 4px;
+  padding-bottom: 4px;
+}
 
-    .register-form input:focus,
-    .register-form textarea:focus {
-      box-shadow: 0 0 10px rgba(0,191,255,0.6);
-    }
+.main-card {
+  width: 350px;
+  height: 500px;
+  border-radius: 24px;
+  margin-top: -4px;
+  margin-left: -4px;
+  filter: url(#turbulent-displace);
+  transition: .3s;
+}
 
-    textarea { min-height: 100px; resize: vertical; }
+.card-container:hover .main-card {
+  border: 2px solid var(--electric-border-color);
+ 
+}
 
-    .member-inputs {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
 
-    .member-inputs input { flex: 1; }
 
-    .whatsapp-box {
-      background: rgba(0,191,255,0.1);
-      padding: 1rem;
-      border-radius: 12px;
-      border: 1px solid rgba(0,191,255,0.3);
-      margin-top: 1rem;
-    }
+/* Glow effects */
+.glow-layer-1 {
+  border: 2px solid  #00fffb;
+  border-radius: 24px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  filter: blur(1px);
+}
 
-    .whatsapp-box a {
-      color: #00ffcc;
-      font-weight: bold;
-      text-decoration: none;
-    }
+.glow-layer-2 {
+  border: 2px solid var(--electric-light-color);
+  border-radius: 24px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  filter: blur(4px);
+}
 
-    .whatsapp-box a:hover { text-decoration: underline; }
+/* Overlay effects */
+.overlay-1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 24px;
+  opacity: 1;
+  mix-blend-mode: overlay;
+  transform: scale(1.1);
+  filter: blur(16px);
+  background: linear-gradient(
+    -30deg,
+    white,
+    transparent 30%,
+    transparent 70%,
+    white
+  );
+}
 
-    .register-form button {
-      background: linear-gradient(90deg, #6a5acd, #00bfff);
-      color: white;
-      padding: 14px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      font-size: 1.1rem;
-      font-weight: bold;
-      margin-top: 1rem;
-      transition: 0.3s;
-    }
+.overlay-2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 24px;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  transform: scale(1.1);
+  filter: blur(16px);
+  background: linear-gradient(
+    -30deg,
+    white,
+    transparent 30%,
+    transparent 70%,
+    white
+  );
+}
 
-    .register-form button:hover {
-      opacity: 0.95;
-      transform: scale(1.03);
-      box-shadow: 0 0 15px rgba(0,191,255,0.5);
-    }
+/* Background glow */
+.background-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 24px;
+  filter: blur(32px);
+  transform: scale(1.1);
+  opacity: 0.3;
+  z-index: -1;
+  background: linear-gradient(
+    -30deg,
+    var(--electric-light-color),
+    transparent,
+    var(--electric-border-color)
+  );
+}
 
-    .output-box {
-      max-width: 850px;
-      margin: 2rem auto;
-      background: #162034;
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(106,90,205,0.4);
-      display: none;
-      animation: fadeIn 0.6s ease-in-out;
-    }
+/* Content container */
+.content-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
-    .output-box h2 { color: #00bfff; margin-bottom: 1rem; }
-    .output-box h3 { color: #6a5acd; margin-top: 1rem; }
-    .output-box ul { list-style: none; padding: 0; }
-    .output-box ul li {
-      margin: 8px 0;
-      background: rgba(0,191,255,0.1);
-      padding: 8px 12px;
-      border-radius: 8px;
-    }
+/* Content sections */
+.content-top {
+  display: flex;
+  flex-direction: column;
+  padding: 48px;
+  padding-bottom: 16px;
+  height: 100%;
+}
 
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(10px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
+.content-bottom {
+  display: flex;
+  flex-direction: column;
+  padding: 48px;
+  padding-top: 16px;
+}
 
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #111a2f;
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      color: #aaa;
-    }
+/* Scrollbar glass component */
+.scrollbar-glass {
+  background: radial-gradient(
+      47.2% 50% at 50.39% 88.37%,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    rgba(255, 255, 255, 0.04);
+  position: relative;
+  transition: background 0.3s ease;
+  border-radius: 14px;
+  width: fit-content;
+  height: fit-content;
+  padding: 8px 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
 
-    @media(max-width:768px) {
-      .hero h1 { font-size: 2rem; }
-      .register-form { padding: 1.5rem; }
-    }
-  </style>
+.scrollbar-glass:hover {
+  background: radial-gradient(
+      47.2% 50% at 50.39% 88.37%,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    rgba(255, 255, 255, 0.08);
+}
+
+.scrollbar-glass::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1px;
+  background: linear-gradient(
+    150deg,
+    rgba(255, 255, 255, 0.48) 16.73%,
+    rgba(255, 255, 255, 0.08) 30.2%,
+    rgba(255, 255, 255, 0.08) 68.2%,
+    rgba(255, 255, 255, 0.6) 81.89%
+  );
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+/* Typography */
+.title {
+  font-size: 36px;
+  font-weight: 500;
+  margin-top: auto;
+}
+
+.description {
+  opacity: 0.5;
+}
+
+/* Image styling for cards */
+.card-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Social media links */
+.social-links {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  justify-content: center;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-link:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.social-link.linkedin:hover {
+  background: #0077b5;
+  border-color: #0077b5;
+}
+
+.social-link.email:hover {
+  background: #ea4335;
+  border-color: #ea4335;
+}
+
+.social-link.instagram:hover {
+  background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+  border-color: #bc1888;
+}
+
+.social-link i {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+}
+
+/* Top left positioning */
+.top-left-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 10;
+}
+
+/* Divider */
+.divider {
+  margin-top: auto;
+  border: none;
+  height: 1px;
+  background-color: currentColor;
+  opacity: 0.1;
+  mask-image: linear-gradient(to right, transparent, black, transparent);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black,
+    transparent
+  );
+}
+
+
+
+
+.svg-container1 {
+  position: absolute;
+}
+
+/* Card container */
+.card-container1 {
+    cursor: pointer;
+  padding: 2px;
+  border-radius: 24px;
+  position: relative;
+  background: linear-gradient(
+      -30deg,
+      var(--gradient-color1),
+      transparent,
+      var(--gradient-color1)
+    ),
+    linear-gradient(
+      to bottom,
+      var(--color-neutral-9001),
+      var(--color-neutral-9001)
+    );
+}
+
+/* Inner container */
+.inner-container1 {
+  position: relative;
+}
+
+/* Border layers */
+.border-outer1 {
+  border: 2px solid  #00fffb;
+  border-radius: 24px;
+  padding-right: 4px;
+  padding-bottom: 4px;
+}
+
+.main-card1 {
+  width: 350px;
+  height: 500px;
+  border-radius: 24px;
+  margin-top: -4px;
+  margin-left: -4px;
+  filter: url(#turbulent-displace);
+  transition: .3s;
+}
+
+.card-container1:hover .main-card1 {
+ border: 2px solid var(--electric-border-color1);
+ cursor: pointer;
+}
+
+
+
+/* Glow effects */
+.glow-layer-11 {
+  border: 2px solid  #ffe100;
+  border-radius: 24px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  filter: blur(1px);
+}
+
+.glow-layer-21 {
+  border: 2px solid var(--electric-light-color1);
+  border-radius: 24px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  filter: blur(4px);
+}
+
+/* Overlay effects */
+.overlay-11 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 24px;
+  opacity: 1;
+  mix-blend-mode: overlay;
+  transform: scale(1.1);
+  filter: blur(16px);
+  background: linear-gradient(
+    -30deg,
+    white,
+    transparent 30%,
+    transparent 70%,
+    white
+  );
+}
+
+.overlay-21 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 24px;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  transform: scale(1.1);
+  filter: blur(16px);
+  background: linear-gradient(
+    -30deg,
+    white,
+    transparent 30%,
+    transparent 70%,
+    white
+  );
+}
+
+/* Background glow */
+.background-glow1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 24px;
+  filter: blur(32px);
+  transform: scale(1.1);
+  opacity: 0.3;
+  z-index: -1;
+  background: linear-gradient(
+    -30deg,
+    var(--electric-light-color1),
+    transparent,
+    var(--electric-border-color1)
+  );
+}
+
+/* Content container */
+.content-container1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Content sections */
+.content-top1 {
+  display: flex;
+  flex-direction: column;
+  padding: 48px;
+  padding-bottom: 16px;
+  height: 100%;
+}
+
+.content-bottom1 {
+  display: flex;
+  flex-direction: column;
+  padding: 48px;
+  padding-top: 16px;
+}
+
+/* Scrollbar glass component */
+.scrollbar-glass1 {
+  background: radial-gradient(
+      47.2% 50% at 50.39% 88.37%,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    rgba(255, 255, 255, 0.04);
+  position: relative;
+  transition: background 0.3s ease;
+  border-radius: 14px;
+  width: fit-content;
+  height: fit-content;
+  padding: 8px 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.scrollbar-glass1:hover {
+  background: radial-gradient(
+      47.2% 50% at 50.39% 88.37%,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    rgba(255, 255, 255, 0.08);
+}
+
+.scrollbar-glass1::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1px;
+  background: linear-gradient(
+    150deg,
+    rgba(255, 255, 255, 0.48) 16.73%,
+    rgba(255, 255, 255, 0.08) 30.2%,
+    rgba(255, 255, 255, 0.08) 68.2%,
+    rgba(255, 255, 255, 0.6) 81.89%
+  );
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+/* Typography */
+.title1 {
+  font-size: 36px;
+  font-weight: 500;
+  margin-top: auto;
+}
+
+.description1 {
+  opacity: 0.5;
+}
+
+/* Divider */
+.divider1 {
+  margin-top: auto;
+  border: none;
+  height: 1px;
+  background-color: currentColor;
+  opacity: 0.1;
+  mask-image: linear-gradient(to right, transparent, black, transparent);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black,
+    transparent
+  );
+}
+</style>
 </head>
 <body>
-  <!-- Navbar -->
-  <header>
-    <div class="logo">
-      <img src="/assets/images/logo/logo.png" alt="TECHनीकी Logo">
-      <span>Techniki</span>
+    <main class="main-container">
+  <svg class="svg-container">
+    <defs>
+      <filter id="turbulent-displace" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="1" />
+        <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
+          <animate attributeName="dy" values="700; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
+
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="1" />
+        <feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
+          <animate attributeName="dy" values="0; -700" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
+
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="2" />
+        <feOffset in="noise1" dx="0" dy="0" result="offsetNoise3">
+          <animate attributeName="dx" values="490; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
+
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="2" />
+        <feOffset in="noise2" dx="0" dy="0" result="offsetNoise4">
+          <animate attributeName="dx" values="0; -490" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
+
+        <feComposite in="offsetNoise1" in2="offsetNoise2" result="part1" />
+        <feComposite in="offsetNoise3" in2="offsetNoise4" result="part2" />
+        <feBlend in="part1" in2="part2" mode="color-dodge" result="combinedNoise" />
+
+        <feDisplacementMap in="SourceGraphic" in2="combinedNoise" scale="30" xChannelSelector="R" yChannelSelector="B" />
+      </filter>
+    </defs>
+  </svg>
+
+  <div class="card-container">
+    <div class="inner-container">
+      <div class="border-outer">
+        <div class="main-card"></div>
+      </div>
+      <div class="glow-layer-1"></div>
+      <div class="glow-layer-2"></div>
     </div>
-  </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>🚀 Techniki TTS</h1>
-    <p>Register your innovative idea and showcase your team’s talent.</p>
-  </section>
+    <div class="overlay-1"></div>
+    <div class="overlay-2"></div>
+    <div class="background-glow"></div>
 
-  <!-- Registration Form -->
-  <section class="register">
-    <h2 class="section-title">Team Registration</h2>
-    <form class="register-form" id="projectForm">
-      <label>Team Name:</label>
-      <input type="text" id="projectTitle" placeholder="Enter Team Name" required>
-
-      <label>Project Description:</label>
-      <textarea id="projectDesc" placeholder="Enter Project Description" required></textarea>
-
-      <label>Leader Name:</label>
-      <input type="text" id="leader" placeholder="Enter Leader Name" required>
-      <input type="text" id="leaderCourse" placeholder="Leader Course" required>
-
-      <h3>Team Members</h3>
-      <div class="member-inputs">
-        <input type="text" id="member2Name" placeholder="Member 2 Name" required>
-        <input type="text" id="member2Course" placeholder="Course" required>
+    <div class="content-container">
+      <div class="scrollbar-glass1 top-left-badge">
+        Allumani
       </div>
-      <div class="member-inputs">
-        <input type="text" id="member3Name" placeholder="Member 3 Name">
-        <input type="text" id="member3Course" placeholder="Course">
-      </div>
-      <div class="member-inputs">
-        <input type="text" id="member4Name" placeholder="Member 4 Name">
-        <input type="text" id="member4Course" placeholder="Course">
-      </div>
-      <div class="member-inputs">
-        <input type="text" id="member5Name" placeholder="Member 5 Name">
-        <input type="text" id="member5Course" placeholder="Course">
-      </div>
-      <div class="member-inputs">
-        <input type="text" id="member6Name" placeholder="Member 6 Name">
-        <input type="text" id="member6Course" placeholder="Course">
+      <div class="content-top">
+        <img src="team.jpg" alt="Team Photo" class="card-image">
+        <p class="title">Rama Bhaiya</p>
       </div>
 
-      <!-- WhatsApp Group Requirement -->
-      <div class="whatsapp-box">
-        <p>
-          👉 First join our WhatsApp group: 
-          <a href="https://chat.whatsapp.com/KDJ9c4hjf9Q95DERa3yCCt" target="_blank">Join WhatsApp Group</a>
-        </p>
-        <label>
-          <input type="checkbox" id="joinedWhatsapp"> ✅ I confirm I have joined the WhatsApp group
-        </label>
+      <hr class="divider" />
+
+      <div class="content-bottom">
+        <p class="description">Passionate developer and tech enthusiast with expertise in modern web technologies. Always eager to learn and share knowledge with the community.</p>
+        <div class="social-links">
+          <a href="https://linkedin.com/in/rama-bhaiya" target="_blank" class="social-link linkedin" title="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="mailto:rama@example.com" class="social-link email" title="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+          <a href="https://instagram.com/rama_bhaiya" target="_blank" class="social-link instagram" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
       </div>
-
-      <button type="submit">✅ Register Team</button>
-    </form>
-  </section>
-
-  <!-- Display Project Details -->
-  <div class="output-box" id="outputBox">
-    <h2>📌 Registered Project</h2>
-    <h3 id="outTitle"></h3>
-    <p id="outDesc"></p>
-    <h3>Leader</h3>
-    <p id="outLeader"></p>
-    <h3>Members</h3>
-    <ul id="outMembers"></ul>
+    </div>
   </div>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Techniki Team. All rights reserved.</p>
-  </footer>
 
-  <!-- Script -->
-  <!-- Result Box -->
-  <div class="output-box" id="resultBox" style="display:none"></div>
+  <svg class="svg-container1">
+    <defs>
+      <filter id="turbulent-displace" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="1" />
+        <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
+          <animate attributeName="dy" values="700; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
 
-  <script>
-    // SheetDB API configuration
-    const SHEETDB_API_URL = "https://sheetdb.io/api/v1/vrtm9xte6srt8";
-    // Replace with your deployed Apps Script Web App URL to store in Google Sheets
-    // Example: https://script.google.com/macros/s/AKfycb.../exec
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw9HSkdUPu9J-urgvKWl5SnJ1FH3PR01_SxwlOiKY9r/dev";
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="1" />
+        <feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
+          <animate attributeName="dy" values="0; -700" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
 
-    const form = document.getElementById("projectForm");
-    const resultBox = document.getElementById("resultBox");
-    const joinedWhatsapp = document.getElementById("joinedWhatsapp");
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="2" />
+        <feOffset in="noise1" dx="0" dy="0" result="offsetNoise3">
+          <animate attributeName="dx" values="490; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
 
-    function showResult(msg, ok = true) {
-      resultBox.style.display = "block";
-      resultBox.style.border = ok ? "1px solid #bbf7d0" : "1px solid #fca5a5";
-      resultBox.style.background = ok ? "#ecfdf5" : "#ffefef";
-      resultBox.style.color = ok ? "#065f46" : "#7f1d1d";
-      resultBox.innerHTML = msg;
-      resultBox.scrollIntoView({ behavior: "smooth" });
-    }
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="2" />
+        <feOffset in="noise2" dx="0" dy="0" result="offsetNoise4">
+          <animate attributeName="dx" values="0; -490" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+        <feComposite in="offsetNoise1" in2="offsetNoise2" result="part1" />
+        <feComposite in="offsetNoise3" in2="offsetNoise4" result="part2" />
+        <feBlend in="part1" in2="part2" mode="color-dodge" result="combinedNoise" />
 
-      if (!joinedWhatsapp.checked) {
-        showResult("⚠️ Please join the WhatsApp group before registering!", false);
-        return;
-      }
+        <feDisplacementMap in="SourceGraphic" in2="combinedNoise" scale="30" xChannelSelector="R" yChannelSelector="B" />
+      </filter>
+    </defs>
+  </svg>
 
-      const payload = {
-        team_name: document.getElementById("projectTitle").value.trim(),
-        idea: document.getElementById("projectDesc").value.trim(),
-        team_lead_name: document.getElementById("leader").value.trim(),
-        team_lead_course: document.getElementById("leaderCourse").value.trim(),
-        team_member2_name: document.getElementById("member2Name").value.trim(),
-        team_member2_course: document.getElementById("member2Course").value.trim(),
-        team_member3_name: (document.getElementById("member3Name").value || "").trim() || null,
-        team_member3_course: (document.getElementById("member3Course").value || "").trim() || null,
-        team_member4_name: (document.getElementById("member4Name").value || "").trim() || null,
-        team_member4_course: (document.getElementById("member4Course").value || "").trim() || null,
-        team_member5_name: (document.getElementById("member5Name").value || "").trim() || null,
-        team_member5_course: (document.getElementById("member5Course").value || "").trim() || null,
-        team_member6_name: (document.getElementById("member6Name").value || "").trim() || null,
-        team_member6_course: (document.getElementById("member6Course").value || "").trim() || null
-      };
+  <div class="card-container1">
+    <div class="inner-container1">
+      <div class="border-outer1">
+        <div class="main-card1"></div>
+      </div>
+      <div class="glow-layer-11"></div>
+      <div class="glow-layer-21"></div>
+    </div>
 
-      // Validation: required fields and minimum 2 members total (leader + at least one member)
-      if (!payload.team_name || !payload.idea || !payload.team_lead_name || !payload.team_lead_course) {
-        showResult("⚠️ Please fill all required fields.", false);
-        return;
-      }
-      if (!payload.team_member2_name || !payload.team_member2_course) {
-        showResult("⚠️ At least one team member (Member 2) is required.", false);
-        return;
-      }
+    <div class="overlay-11"></div>
+    <div class="overlay-21"></div>
+    <div class="background-glow1"></div>
 
-      try {
-        // Submit to SheetDB API - SheetDB expects data wrapped in an array
-        const response = await fetch(SHEETDB_API_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify([payload]), // Wrap payload in array for SheetDB
-        });
+    <div class="content-container1">
+      <div class="scrollbar-glass1 top-left-badge">
+        Dramatic
+      </div>
+      <div class="content-top1">
+        <img src="team.jpg" alt="Team Photo" class="card-image">
+        <p class="title1">Rama bhaiya</p>
+      </div>
 
-        if (!response.ok) {
-          const errorData = await response.text();
-          showResult("❌ Error submitting to database: " + errorData, false);
-          return;
-        }
+      <hr class="divider1" />
 
-        showResult("✅ Team Registered Successfully! Redirecting...", true);
-        form.reset();
-        setTimeout(() => { window.location.href = "https://techniki.club/"; }, 1200);
-
-        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL.includes("/exec")) {
-          // Fire-and-forget send to Google Apps Script with keepalive for redirects/unload
-          fetch(APPS_SCRIPT_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-            keepalive: true,
-            mode: "no-cors"
-          }).catch(() => {});
-        }
-      } catch (err) {
-        showResult("❌ Unexpected error: " + err.message, false);
-      }
-    });
-  </script>
+      <div class="content-bottom1">
+        <p class="description1">Creative designer and visual artist specializing in electric and dynamic UI/UX designs. Bringing innovation to every project.</p>
+        <div class="social-links">
+          <a href="https://linkedin.com/in/electric-border" target="_blank" class="social-link linkedin" title="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="mailto:electric@example.com" class="social-link email" title="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+          <a href="https://instagram.com/electric_border" target="_blank" class="social-link instagram" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
 </body>
 </html>
