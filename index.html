@@ -332,13 +332,13 @@
       }
 
       try {
-        // Submit to SheetDB API
+        // Submit to SheetDB API - SheetDB expects data wrapped in an array
         const response = await fetch(SHEETDB_API_URL, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(payload),
+          body: JSON.stringify([payload]), // Wrap payload in array for SheetDB
         });
 
         if (!response.ok) {
