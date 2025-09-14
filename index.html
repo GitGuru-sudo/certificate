@@ -1,780 +1,603 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>/* Reset and base styles */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techniki Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* CSS Variables */
-:root {
-  --electric-border-color: #00fffb;
-  --electric-light-color: oklch(from var(--electric-border-color) l c h);
-  --gradient-color: oklch(
-    from var(--electric-border-color) 0.3 calc(c / 2) h / 0.4
-  );
-  --color-neutral-900: oklch(0.185 0 0);
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e1a;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
 
-  --electric-border-color1: #f2ff00;
-  --electric-light-color1: oklch(from var(--electric-border-color1) l c h);
-  --gradient-color1: oklch(
-    from var(--electric-border-color1) 0.3 calc(c / 2) h / 0.4
-  );
-  --color-neutral-9001: oklch(0.185 0 0);
-}
+        /* Animated dark blue background */
+        .bg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #0d1421 100%);
+            z-index: 1;
+        }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+        /* Animated gradient overlay */
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #1e3a8a, #1e40af, #2563eb, #3b82f6);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            opacity: 0.1;
+            z-index: 2;
+        }
 
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  background-color: #151f28;
-  color: oklch(0.985 0 0);
-  height: 100vh;
-  overflow: hidden;
-}
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-/* Main container */
-.main-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 90px;
-  justify-content: center;
-  height: 100vh;
-}
+        /* Floating geometric shapes */
+        .shape {
+            position: absolute;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            animation: float 12s ease-in-out infinite;
+            z-index: 3;
+        }
 
-/* SVG positioning */
-.svg-container {
-  position: absolute;
-}
+        .shape:nth-child(1) {
+            width: 60px;
+            height: 60px;
+            top: 10%;
+            left: 10%;
+            border-radius: 50%;
+            animation-delay: 0s;
+        }
 
-/* Card container */
-.card-container {
-     cursor: pointer;
-  padding: 2px;
-  border-radius: 24px;
-  position: relative;
-  background: linear-gradient(
-      -30deg,
-      var(--gradient-color),
-      transparent,
-      var(--gradient-color)
-    ),
-    linear-gradient(
-      to bottom,
-      var(--color-neutral-900),
-      var(--color-neutral-900)
-    );
-}
+        .shape:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            right: 15%;
+            transform: rotate(45deg);
+            animation-delay: 2s;
+        }
 
+        .shape:nth-child(3) {
+            width: 40px;
+            height: 40px;
+            bottom: 20%;
+            left: 20%;
+            border-radius: 50%;
+            animation-delay: 4s;
+        }
 
+        .shape:nth-child(4) {
+            width: 70px;
+            height: 70px;
+            bottom: 30%;
+            right: 25%;
+            transform: rotate(45deg);
+            animation-delay: 6s;
+        }
 
-/* Inner container */
-.inner-container {
-  position: relative;
-}
+        .shape:nth-child(5) {
+            width: 50px;
+            height: 50px;
+            top: 50%;
+            left: 5%;
+            border-radius: 50%;
+            animation-delay: 8s;
+        }
 
-/* Border layers */
-.border-outer {
-  border: 2px solid  #00fffb;
-  border-radius: 24px;
-  padding-right: 4px;
-  padding-bottom: 4px;
-}
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg); 
+                opacity: 0.3;
+            }
+            50% { 
+                transform: translateY(-30px) rotate(180deg); 
+                opacity: 0.6;
+            }
+        }
 
-.main-card {
-  width: 350px;
-  height: 500px;
-  border-radius: 24px;
-  margin-top: -4px;
-  margin-left: -4px;
-  filter: url(#turbulent-displace);
-  transition: .3s;
-}
+        /* Login container */
+        .login-container {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 48px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(59, 130, 246, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            position: relative;
+            z-index: 10;
+            animation: slideUp 0.8s ease-out;
+        }
 
-.card-container:hover .main-card {
-  border: 2px solid var(--electric-border-color);
- 
-}
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
+        /* Logo section */
+        .logo-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
+        .logo {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            box-shadow: 
+                0 15px 35px rgba(59, 130, 246, 0.3),
+                0 0 0 3px rgba(59, 130, 246, 0.1);
+            position: relative;
+            animation: pulse 2s ease-in-out infinite;
+        }
 
-/* Glow effects */
-.glow-layer-1 {
-  border: 2px solid  #00fffb;
-  border-radius: 24px;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  filter: blur(1px);
-}
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
 
-.glow-layer-2 {
-  border: 2px solid var(--electric-light-color);
-  border-radius: 24px;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  filter: blur(4px);
-}
+        .logo::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #3b82f6, #1e40af, #3b82f6);
+            z-index: -1;
+            animation: rotate 3s linear infinite;
+        }
 
-/* Overlay effects */
-.overlay-1 {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 24px;
-  opacity: 1;
-  mix-blend-mode: overlay;
-  transform: scale(1.1);
-  filter: blur(16px);
-  background: linear-gradient(
-    -30deg,
-    white,
-    transparent 30%,
-    transparent 70%,
-    white
-  );
-}
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-.overlay-2 {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 24px;
-  opacity: 0.5;
-  mix-blend-mode: overlay;
-  transform: scale(1.1);
-  filter: blur(16px);
-  background: linear-gradient(
-    -30deg,
-    white,
-    transparent 30%,
-    transparent 70%,
-    white
-  );
-}
+        .logo i {
+            font-size: 36px;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
 
-/* Background glow */
-.background-glow {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 24px;
-  filter: blur(32px);
-  transform: scale(1.1);
-  opacity: 0.3;
-  z-index: -1;
-  background: linear-gradient(
-    -30deg,
-    var(--electric-light-color),
-    transparent,
-    var(--electric-border-color)
-  );
-}
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 2px 20px rgba(59, 130, 246, 0.3);
+            letter-spacing: -0.5px;
+        }
 
-/* Content container */
-.content-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
+        .subtitle {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 8px;
+            font-weight: 400;
+        }
 
-/* Content sections */
-.content-top {
-  display: flex;
-  flex-direction: column;
-  padding: 48px;
-  padding-bottom: 16px;
-  height: 100%;
-}
+        /* Form styling */
+        .form-group {
+            margin-bottom: 28px;
+            position: relative;
+        }
 
-.content-bottom {
-  display: flex;
-  flex-direction: column;
-  padding: 48px;
-  padding-top: 16px;
-}
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
 
-/* Scrollbar glass component */
-.scrollbar-glass {
-  background: radial-gradient(
-      47.2% 50% at 50.39% 88.37%,
-      rgba(255, 255, 255, 0.12) 0%,
-      rgba(255, 255, 255, 0) 100%
-    ),
-    rgba(255, 255, 255, 0.04);
-  position: relative;
-  transition: background 0.3s ease;
-  border-radius: 14px;
-  width: fit-content;
-  height: fit-content;
-  padding: 8px 16px;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.8);
-}
+        .input-container {
+            position: relative;
+        }
 
-.scrollbar-glass:hover {
-  background: radial-gradient(
-      47.2% 50% at 50.39% 88.37%,
-      rgba(255, 255, 255, 0.12) 0%,
-      rgba(255, 255, 255, 0) 100%
-    ),
-    rgba(255, 255, 255, 0.08);
-}
+        .input-container i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
 
-.scrollbar-glass::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 1px;
-  background: linear-gradient(
-    150deg,
-    rgba(255, 255, 255, 0.48) 16.73%,
-    rgba(255, 255, 255, 0.08) 30.2%,
-    rgba(255, 255, 255, 0.08) 68.2%,
-    rgba(255, 255, 255, 0.6) 81.89%
-  );
-  border-radius: inherit;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: xor;
-  -webkit-mask-composite: xor;
-  pointer-events: none;
-}
+        .form-input {
+            width: 100%;
+            padding: 18px 18px 18px 52px;
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            background: rgba(15, 23, 42, 0.6);
+            color: #fff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            outline: none;
+        }
 
-/* Typography */
-.title {
-  font-size: 36px;
-  font-weight: 500;
-  margin-top: auto;
-}
+        .form-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 
+                0 0 0 3px rgba(59, 130, 246, 0.1),
+                0 0 20px rgba(59, 130, 246, 0.2);
+            background: rgba(15, 23, 42, 0.8);
+        }
 
-.description {
-  opacity: 0.5;
-}
+        .form-input:focus + .input-container i,
+        .form-input:focus ~ .input-container i {
+            color: #3b82f6;
+        }
 
-/* Image styling for cards */
-.card-image {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
 
-/* Social media links */
-.social-links {
-  display: flex;
-  gap: 12px;
-  margin-top: 16px;
-  justify-content: center;
-}
+        /* Login button */
+        .login-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            border: none;
+            border-radius: 16px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: none;
+            letter-spacing: 0.5px;
+            box-shadow: 
+                0 10px 25px rgba(59, 130, 246, 0.3),
+                0 0 0 1px rgba(59, 130, 246, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
 
-.social-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
+        .login-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
 
-.social-link:hover {
-  transform: scale(1.1);
-  background: rgba(255, 255, 255, 0.2);
-}
+        .login-btn:hover::before {
+            left: 100%;
+        }
 
-.social-link.linkedin:hover {
-  background: #0077b5;
-  border-color: #0077b5;
-}
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 15px 35px rgba(59, 130, 246, 0.4),
+                0 0 0 1px rgba(59, 130, 246, 0.2);
+        }
 
-.social-link.email:hover {
-  background: #ea4335;
-  border-color: #ea4335;
-}
+        .login-btn:active {
+            transform: translateY(0);
+        }
 
-.social-link.instagram:hover {
-  background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-  border-color: #bc1888;
-}
+        /* Messages */
+        .message {
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+            display: none;
+            backdrop-filter: blur(10px);
+            animation: slideDown 0.3s ease-out;
+        }
 
-.social-link i {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 16px;
-}
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-/* Top left positioning */
-.top-left-badge {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  z-index: 10;
-}
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+        }
 
-/* Divider */
-.divider {
-  margin-top: auto;
-  border: none;
-  height: 1px;
-  background-color: currentColor;
-  opacity: 0.1;
-  mask-image: linear-gradient(to right, transparent, black, transparent);
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    black,
-    transparent
-  );
-}
+        .success-message {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #86efac;
+        }
 
+        /* Loading state */
+        .loading {
+            opacity: 0.8;
+            pointer-events: none;
+        }
 
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 12px;
+        }
 
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-.svg-container1 {
-  position: absolute;
-}
+        /* Responsive design */
+        @media (max-width: 480px) {
+            .login-container {
+                margin: 20px;
+                padding: 36px 28px;
+            }
+            
+            .logo-text {
+                font-size: 28px;
+            }
 
-/* Card container */
-.card-container1 {
-    cursor: pointer;
-  padding: 2px;
-  border-radius: 24px;
-  position: relative;
-  background: linear-gradient(
-      -30deg,
-      var(--gradient-color1),
-      transparent,
-      var(--gradient-color1)
-    ),
-    linear-gradient(
-      to bottom,
-      var(--color-neutral-9001),
-      var(--color-neutral-9001)
-    );
-}
+            .logo {
+                width: 80px;
+                height: 80px;
+            }
 
-/* Inner container */
-.inner-container1 {
-  position: relative;
-}
+            .logo i {
+                font-size: 32px;
+            }
+        }
 
-/* Border layers */
-.border-outer1 {
-  border: 2px solid  #00fffb;
-  border-radius: 24px;
-  padding-right: 4px;
-  padding-bottom: 4px;
-}
+        /* Glow effect for container */
+        .login-container::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 24px;
+            background: linear-gradient(45deg, #3b82f6, #1e40af, #3b82f6);
+            z-index: -1;
+            opacity: 0.1;
+            animation: glow 3s ease-in-out infinite;
+        }
 
-.main-card1 {
-  width: 350px;
-  height: 500px;
-  border-radius: 24px;
-  margin-top: -4px;
-  margin-left: -4px;
-  filter: url(#turbulent-displace);
-  transition: .3s;
-}
-
-.card-container1:hover .main-card1 {
- border: 2px solid var(--electric-border-color1);
- cursor: pointer;
-}
-
-
-
-/* Glow effects */
-.glow-layer-11 {
-  border: 2px solid  #ffe100;
-  border-radius: 24px;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  filter: blur(1px);
-}
-
-.glow-layer-21 {
-  border: 2px solid var(--electric-light-color1);
-  border-radius: 24px;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  filter: blur(4px);
-}
-
-/* Overlay effects */
-.overlay-11 {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 24px;
-  opacity: 1;
-  mix-blend-mode: overlay;
-  transform: scale(1.1);
-  filter: blur(16px);
-  background: linear-gradient(
-    -30deg,
-    white,
-    transparent 30%,
-    transparent 70%,
-    white
-  );
-}
-
-.overlay-21 {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 24px;
-  opacity: 0.5;
-  mix-blend-mode: overlay;
-  transform: scale(1.1);
-  filter: blur(16px);
-  background: linear-gradient(
-    -30deg,
-    white,
-    transparent 30%,
-    transparent 70%,
-    white
-  );
-}
-
-/* Background glow */
-.background-glow1 {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 24px;
-  filter: blur(32px);
-  transform: scale(1.1);
-  opacity: 0.3;
-  z-index: -1;
-  background: linear-gradient(
-    -30deg,
-    var(--electric-light-color1),
-    transparent,
-    var(--electric-border-color1)
-  );
-}
-
-/* Content container */
-.content-container1 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Content sections */
-.content-top1 {
-  display: flex;
-  flex-direction: column;
-  padding: 48px;
-  padding-bottom: 16px;
-  height: 100%;
-}
-
-.content-bottom1 {
-  display: flex;
-  flex-direction: column;
-  padding: 48px;
-  padding-top: 16px;
-}
-
-/* Scrollbar glass component */
-.scrollbar-glass1 {
-  background: radial-gradient(
-      47.2% 50% at 50.39% 88.37%,
-      rgba(255, 255, 255, 0.12) 0%,
-      rgba(255, 255, 255, 0) 100%
-    ),
-    rgba(255, 255, 255, 0.04);
-  position: relative;
-  transition: background 0.3s ease;
-  border-radius: 14px;
-  width: fit-content;
-  height: fit-content;
-  padding: 8px 16px;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.scrollbar-glass1:hover {
-  background: radial-gradient(
-      47.2% 50% at 50.39% 88.37%,
-      rgba(255, 255, 255, 0.12) 0%,
-      rgba(255, 255, 255, 0) 100%
-    ),
-    rgba(255, 255, 255, 0.08);
-}
-
-.scrollbar-glass1::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 1px;
-  background: linear-gradient(
-    150deg,
-    rgba(255, 255, 255, 0.48) 16.73%,
-    rgba(255, 255, 255, 0.08) 30.2%,
-    rgba(255, 255, 255, 0.08) 68.2%,
-    rgba(255, 255, 255, 0.6) 81.89%
-  );
-  border-radius: inherit;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: xor;
-  -webkit-mask-composite: xor;
-  pointer-events: none;
-}
-
-/* Typography */
-.title1 {
-  font-size: 36px;
-  font-weight: 500;
-  margin-top: auto;
-}
-
-.description1 {
-  opacity: 0.5;
-}
-
-/* Divider */
-.divider1 {
-  margin-top: auto;
-  border: none;
-  height: 1px;
-  background-color: currentColor;
-  opacity: 0.1;
-  mask-image: linear-gradient(to right, transparent, black, transparent);
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    black,
-    transparent
-  );
-}
-</style>
+        @keyframes glow {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.2; }
+        }
+    </style>
 </head>
 <body>
-    <main class="main-container">
-  <svg class="svg-container">
-    <defs>
-      <filter id="turbulent-displace" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
-        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="1" />
-        <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
-          <animate attributeName="dy" values="700; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
-        </feOffset>
+    <!-- Background elements -->
+    <div class="bg-container"></div>
+    <div class="gradient-overlay"></div>
+    
+    <!-- Floating shapes -->
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
 
-        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="1" />
-        <feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
-          <animate attributeName="dy" values="0; -700" dur="6s" repeatCount="indefinite" calcMode="linear" />
-        </feOffset>
-
-        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="2" />
-        <feOffset in="noise1" dx="0" dy="0" result="offsetNoise3">
-          <animate attributeName="dx" values="490; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
-        </feOffset>
-
-        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="2" />
-        <feOffset in="noise2" dx="0" dy="0" result="offsetNoise4">
-          <animate attributeName="dx" values="0; -490" dur="6s" repeatCount="indefinite" calcMode="linear" />
-        </feOffset>
-
-        <feComposite in="offsetNoise1" in2="offsetNoise2" result="part1" />
-        <feComposite in="offsetNoise3" in2="offsetNoise4" result="part2" />
-        <feBlend in="part1" in2="part2" mode="color-dodge" result="combinedNoise" />
-
-        <feDisplacementMap in="SourceGraphic" in2="combinedNoise" scale="30" xChannelSelector="R" yChannelSelector="B" />
-      </filter>
-    </defs>
-  </svg>
-
-  <div class="card-container">
-    <div class="inner-container">
-      <div class="border-outer">
-        <div class="main-card"></div>
-      </div>
-      <div class="glow-layer-1"></div>
-      <div class="glow-layer-2"></div>
-    </div>
-
-    <div class="overlay-1"></div>
-    <div class="overlay-2"></div>
-    <div class="background-glow"></div>
-
-    <div class="content-container">
-      <div class="scrollbar-glass1 top-left-badge">
-        Allumani
-      </div>
-      <div class="content-top">
-        <img src="team.jpg" alt="Team Photo" class="card-image">
-        <p class="title">Rama Bhaiya</p>
-      </div>
-
-      <hr class="divider" />
-
-      <div class="content-bottom">
-        <p class="description">Passionate developer and tech enthusiast with expertise in modern web technologies. Always eager to learn and share knowledge with the community.</p>
-        <div class="social-links">
-          <a href="https://linkedin.com/in/rama-bhaiya" target="_blank" class="social-link linkedin" title="LinkedIn">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-          <a href="mailto:rama@example.com" class="social-link email" title="Email">
-            <i class="fas fa-envelope"></i>
-          </a>
-          <a href="https://instagram.com/rama_bhaiya" target="_blank" class="social-link instagram" title="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
+    <!-- Login container -->
+    <div class="login-container">
+        <!-- Logo section -->
+        <div class="logo-section">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="logo-text">Techniki</div>
+            <div class="subtitle">Secure Access Portal</div>
         </div>
-      </div>
-    </div>
-  </div>
 
+        <!-- Messages -->
+        <div id="errorMessage" class="message error-message"></div>
+        <div id="successMessage" class="message success-message"></div>
 
-  <svg class="svg-container1">
-    <defs>
-      <filter id="turbulent-displace" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
-        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="1" />
-        <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
-          <animate attributeName="dy" values="700; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
-        </feOffset>
+        <!-- Login form -->
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <div class="input-container">
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-input" 
+                        placeholder="Enter your email"
+                        required
+                    >
+                    <i class="fas fa-envelope"></i>
+                </div>
+            </div>
 
-        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="1" />
-        <feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
-          <animate attributeName="dy" values="0; -700" dur="6s" repeatCount="indefinite" calcMode="linear" />
-        </feOffset>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-container">
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        class="form-input" 
+                        placeholder="Enter your password"
+                        required
+                    >
+                    <i class="fas fa-lock"></i>
+                </div>
+            </div>
 
-        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="2" />
-        <feOffset in="noise1" dx="0" dy="0" result="offsetNoise3">
-          <animate attributeName="dx" values="490; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
-        </feOffset>
-
-        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="2" />
-        <feOffset in="noise2" dx="0" dy="0" result="offsetNoise4">
-          <animate attributeName="dx" values="0; -490" dur="6s" repeatCount="indefinite" calcMode="linear" />
-        </feOffset>
-
-        <feComposite in="offsetNoise1" in2="offsetNoise2" result="part1" />
-        <feComposite in="offsetNoise3" in2="offsetNoise4" result="part2" />
-        <feBlend in="part1" in2="part2" mode="color-dodge" result="combinedNoise" />
-
-        <feDisplacementMap in="SourceGraphic" in2="combinedNoise" scale="30" xChannelSelector="R" yChannelSelector="B" />
-      </filter>
-    </defs>
-  </svg>
-
-  <div class="card-container1">
-    <div class="inner-container1">
-      <div class="border-outer1">
-        <div class="main-card1"></div>
-      </div>
-      <div class="glow-layer-11"></div>
-      <div class="glow-layer-21"></div>
+            <button type="submit" class="login-btn" id="loginBtn">
+                <span class="spinner" id="spinner"></span>
+                <span id="btnText">Sign In</span>
+            </button>
+        </form>
     </div>
 
-    <div class="overlay-11"></div>
-    <div class="overlay-21"></div>
-    <div class="background-glow1"></div>
+    <script>
+        // Login credentials
+        const VALID_EMAIL = "techniki123@gmail.com";
+        const VALID_PASSWORD = "techniki@234";
 
-    <div class="content-container1">
-      <div class="scrollbar-glass1 top-left-badge">
-        Dramatic
-      </div>
-      <div class="content-top1">
-        <img src="team.jpg" alt="Team Photo" class="card-image">
-        <p class="title1">Rama bhaiya</p>
-      </div>
+        // DOM elements
+        const loginForm = document.getElementById('loginForm');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const loginBtn = document.getElementById('loginBtn');
+        const btnText = document.getElementById('btnText');
+        const spinner = document.getElementById('spinner');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
 
-      <hr class="divider1" />
+        // Show error message
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            successMessage.style.display = 'none';
+        }
 
-      <div class="content-bottom1">
-        <p class="description1">Creative designer and visual artist specializing in electric and dynamic UI/UX designs. Bringing innovation to every project.</p>
-        <div class="social-links">
-          <a href="https://linkedin.com/in/electric-border" target="_blank" class="social-link linkedin" title="LinkedIn">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-          <a href="mailto:electric@example.com" class="social-link email" title="Email">
-            <i class="fas fa-envelope"></i>
-          </a>
-          <a href="https://instagram.com/electric_border" target="_blank" class="social-link instagram" title="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</main>
+        // Show success message
+        function showSuccess(message) {
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+        }
+
+        // Hide all messages
+        function hideMessages() {
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+        }
+
+        // Show loading state
+        function showLoading() {
+            loginBtn.classList.add('loading');
+            spinner.style.display = 'inline-block';
+            btnText.textContent = 'Signing In...';
+            loginBtn.disabled = true;
+        }
+
+        // Hide loading state
+        function hideLoading() {
+            loginBtn.classList.remove('loading');
+            spinner.style.display = 'none';
+            btnText.textContent = 'Sign In';
+            loginBtn.disabled = false;
+        }
+
+        // Handle form submission
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            // Hide previous messages
+            hideMessages();
+
+            // Basic validation
+            if (!email || !password) {
+                showError('Please fill in all fields');
+                return;
+            }
+
+            // Show loading state
+            showLoading();
+
+            // Simulate login process
+            setTimeout(() => {
+                // Check credentials
+                if (email === VALID_EMAIL && password === VALID_PASSWORD) {
+                    showSuccess('Login successful! Redirecting to dashboard...');
+                    
+                    // Redirect to dashboard after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 2000);
+                } else {
+                    showError('Invalid email or password. Please try again.');
+                    hideLoading();
+                }
+            }, 1500); // Simulate network delay
+        });
+
+        // Clear error message when user starts typing
+        emailInput.addEventListener('input', hideMessages);
+        passwordInput.addEventListener('input', hideMessages);
+
+        // Add enter key support
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                loginForm.dispatchEvent(new Event('submit'));
+            }
+        });
+
+        // Focus on email input when page loads
+        window.addEventListener('load', function() {
+            emailInput.focus();
+        });
+
+        // Add subtle animations on input focus
+        emailInput.addEventListener('focus', function() {
+            this.parentElement.style.transform = 'scale(1.02)';
+        });
+
+        emailInput.addEventListener('blur', function() {
+            this.parentElement.style.transform = 'scale(1)';
+        });
+
+        passwordInput.addEventListener('focus', function() {
+            this.parentElement.style.transform = 'scale(1.02)';
+        });
+
+        passwordInput.addEventListener('blur', function() {
+            this.parentElement.style.transform = 'scale(1)';
+        });
+    </script>
 </body>
 </html>
