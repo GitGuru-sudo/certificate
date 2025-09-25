@@ -1,603 +1,287 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Techniki Login</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0a0e1a;
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Animated dark blue background */
-        .bg-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #0d1421 100%);
-            z-index: 1;
-        }
-
-        /* Animated gradient overlay */
-        .gradient-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #1e3a8a, #1e40af, #2563eb, #3b82f6);
-            background-size: 400% 400%;
-            animation: gradientShift 8s ease infinite;
-            opacity: 0.1;
-            z-index: 2;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Floating geometric shapes */
-        .shape {
-            position: absolute;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            animation: float 12s ease-in-out infinite;
-            z-index: 3;
-        }
-
-        .shape:nth-child(1) {
-            width: 60px;
-            height: 60px;
-            top: 10%;
-            left: 10%;
-            border-radius: 50%;
-            animation-delay: 0s;
-        }
-
-        .shape:nth-child(2) {
-            width: 80px;
-            height: 80px;
-            top: 20%;
-            right: 15%;
-            transform: rotate(45deg);
-            animation-delay: 2s;
-        }
-
-        .shape:nth-child(3) {
-            width: 40px;
-            height: 40px;
-            bottom: 20%;
-            left: 20%;
-            border-radius: 50%;
-            animation-delay: 4s;
-        }
-
-        .shape:nth-child(4) {
-            width: 70px;
-            height: 70px;
-            bottom: 30%;
-            right: 25%;
-            transform: rotate(45deg);
-            animation-delay: 6s;
-        }
-
-        .shape:nth-child(5) {
-            width: 50px;
-            height: 50px;
-            top: 50%;
-            left: 5%;
-            border-radius: 50%;
-            animation-delay: 8s;
-        }
-
-        @keyframes float {
-            0%, 100% { 
-                transform: translateY(0px) rotate(0deg); 
-                opacity: 0.3;
-            }
-            50% { 
-                transform: translateY(-30px) rotate(180deg); 
-                opacity: 0.6;
-            }
-        }
-
-        /* Login container */
-        .login-container {
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            padding: 48px;
-            width: 100%;
-            max-width: 420px;
-            box-shadow: 
-                0 25px 50px rgba(0, 0, 0, 0.5),
-                0 0 0 1px rgba(59, 130, 246, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            position: relative;
-            z-index: 10;
-            animation: slideUp 0.8s ease-out;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Logo section */
-        .logo-section {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .logo {
-            width: 90px;
-            height: 90px;
-            background: linear-gradient(135deg, #3b82f6, #1e40af);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 24px;
-            box-shadow: 
-                0 15px 35px rgba(59, 130, 246, 0.3),
-                0 0 0 3px rgba(59, 130, 246, 0.1);
-            position: relative;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .logo::before {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #3b82f6, #1e40af, #3b82f6);
-            z-index: -1;
-            animation: rotate 3s linear infinite;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .logo i {
-            font-size: 36px;
-            color: #fff;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .logo-text {
-            font-size: 32px;
-            font-weight: 700;
-            color: #fff;
-            text-shadow: 0 2px 20px rgba(59, 130, 246, 0.3);
-            letter-spacing: -0.5px;
-        }
-
-        .subtitle {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: 8px;
-            font-weight: 400;
-        }
-
-        /* Form styling */
-        .form-group {
-            margin-bottom: 28px;
-            position: relative;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 500;
-            font-size: 14px;
-            letter-spacing: 0.5px;
-        }
-
-        .input-container {
-            position: relative;
-        }
-
-        .input-container i {
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 18px;
-            transition: color 0.3s ease;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 18px 18px 18px 52px;
-            border: 2px solid rgba(59, 130, 246, 0.2);
-            border-radius: 16px;
-            background: rgba(15, 23, 42, 0.6);
-            color: #fff;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            outline: none;
-        }
-
-        .form-input:focus {
-            border-color: #3b82f6;
-            box-shadow: 
-                0 0 0 3px rgba(59, 130, 246, 0.1),
-                0 0 20px rgba(59, 130, 246, 0.2);
-            background: rgba(15, 23, 42, 0.8);
-        }
-
-        .form-input:focus + .input-container i,
-        .form-input:focus ~ .input-container i {
-            color: #3b82f6;
-        }
-
-        .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.4);
-        }
-
-        /* Login button */
-        .login-btn {
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, #3b82f6, #1e40af);
-            border: none;
-            border-radius: 16px;
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: none;
-            letter-spacing: 0.5px;
-            box-shadow: 
-                0 10px 25px rgba(59, 130, 246, 0.3),
-                0 0 0 1px rgba(59, 130, 246, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .login-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .login-btn:hover::before {
-            left: 100%;
-        }
-
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 
-                0 15px 35px rgba(59, 130, 246, 0.4),
-                0 0 0 1px rgba(59, 130, 246, 0.2);
-        }
-
-        .login-btn:active {
-            transform: translateY(0);
-        }
-
-        /* Messages */
-        .message {
-            padding: 16px;
-            border-radius: 12px;
-            margin-bottom: 24px;
-            text-align: center;
-            display: none;
-            backdrop-filter: blur(10px);
-            animation: slideDown 0.3s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .error-message {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            color: #fca5a5;
-        }
-
-        .success-message {
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            color: #86efac;
-        }
-
-        /* Loading state */
-        .loading {
-            opacity: 0.8;
-            pointer-events: none;
-        }
-
-        .spinner {
-            display: none;
-            width: 20px;
-            height: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-top: 2px solid #fff;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-right: 12px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Responsive design */
-        @media (max-width: 480px) {
-            .login-container {
-                margin: 20px;
-                padding: 36px 28px;
-            }
-            
-            .logo-text {
-                font-size: 28px;
-            }
-
-            .logo {
-                width: 80px;
-                height: 80px;
-            }
-
-            .logo i {
-                font-size: 32px;
-            }
-        }
-
-        /* Glow effect for container */
-        .login-container::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            border-radius: 24px;
-            background: linear-gradient(45deg, #3b82f6, #1e40af, #3b82f6);
-            z-index: -1;
-            opacity: 0.1;
-            animation: glow 3s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% { opacity: 0.1; }
-            50% { opacity: 0.2; }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Event & Registration Admin</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#06b6d4;--muted:#94a3b8;--glass:rgba(255,255,255,0.03)}
+    *{box-sizing:border-box;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    body{margin:0;background:linear-gradient(180deg,#071129 0%,#071730 100%);color:#e6eef6;padding:24px}
+    header{display:flex;gap:16px;align-items:center;margin-bottom:20px}
+    h1{margin:0;font-size:20px}
+    .wrap{display:grid;grid-template-columns:1fr 420px;gap:18px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(2,6,23,0.6)}
+    label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+    input[type=text],input[type=email],textarea,select,input[type=number],input[type=date]{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    textarea{min-height:64px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    button{background:var(--accent);border:none;padding:8px 10px;border-radius:8px;color:#021022;cursor:pointer}
+    .small{font-size:12px;color:var(--muted);margin-top:8px}
+    pre{background:#02122a;padding:10px;border-radius:8px;overflow:auto;color:#cde}
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th,td{padding:8px;border-bottom:1px dashed rgba(255,255,255,0.02);font-size:13px;text-align:left}
+    nav{display:flex;gap:6px;margin-bottom:10px}
+    .tab{padding:6px 8px;border-radius:8px;background:var(--glass);cursor:pointer}
+    .tab.active{background:linear-gradient(90deg,#052b33,#04303d)}
+    .helper{font-size:12px;color:var(--muted)}
+    .sql{background:#011018;border-radius:8px;padding:10px;margin-top:10px}
+  </style>
 </head>
 <body>
-    <!-- Background elements -->
-    <div class="bg-container"></div>
-    <div class="gradient-overlay"></div>
-    
-    <!-- Floating shapes -->
-    <div class="shape"></div>
-    <div class="shape"></div>
-    <div class="shape"></div>
-    <div class="shape"></div>
-    <div class="shape"></div>
+  <header>
+  
+    <div class="small">Generates SQL INSERTs and JSON you can copy to your server</div>
+  </header>
 
-    <!-- Login container -->
-    <div class="login-container">
-        <!-- Logo section -->
-        <div class="logo-section">
-            <div class="logo">
-                <i class="fas fa-shield-alt"></i>
-            </div>
-            <div class="logo-text">Techniki</div>
-            <div class="subtitle">Secure Access Portal</div>
-        </div>
+  <div class="wrap">
+    <div>
+      <div class="card">
+        <nav>
+          <div class="tab active" data-target="reg-form">Registration</div>
+          <div class="tab" data-target="ctrlz-form">Ctrl_Z Registration</div>
+          <div class="tab" data-target="students-form">Students</div>
+          <div class="tab" data-target="events-form">Events</div>
+        </nav>
 
-        <!-- Messages -->
-        <div id="errorMessage" class="message error-message"></div>
-        <div id="successMessage" class="message success-message"></div>
-
-        <!-- Login form -->
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <div class="input-container">
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        class="form-input" 
-                        placeholder="Enter your email"
-                        required
-                    >
-                    <i class="fas fa-envelope"></i>
-                </div>
+        <!-- Registration (public.registration) -->
+        <section id="reg-form">
+          <h3>Register Team (registration table)</h3>
+          <div class="helper">Fields map to <code>public.registration</code>. Leave optional members blank if not used.</div>
+          <div style="margin-top:12px">
+            <label>Team name<input id="r_team_name" type="text"/></label>
+            <label>Idea<textarea id="r_idea"></textarea></label>
+            <div class="row">
+              <label>Team lead name<input id="r_lead_name" type="text"/></label>
+              <label>Team lead course<input id="r_lead_course" type="text"/></label>
             </div>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <div class="input-container">
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password" 
-                        class="form-input" 
-                        placeholder="Enter your password"
-                        required
-                    >
-                    <i class="fas fa-lock"></i>
-                </div>
+            <div style="margin-top:8px"><strong>Other members (name + course)</strong></div>
+            <div class="row">
+              <label>Member 2 name<input id="r_m2_name" type="text"/></label>
+              <label>Member 2 course<input id="r_m2_course" type="text"/></label>
+            </div>
+            <div class="row">
+              <label>Member 3 name<input id="r_m3_name" type="text"/></label>
+              <label>Member 3 course<input id="r_m3_course" type="text"/></label>
+            </div>
+            <div class="row">
+              <label>Member 4 name<input id="r_m4_name" type="text"/></label>
+              <label>Member 4 course<input id="r_m4_course" type="text"/></label>
             </div>
 
-            <button type="submit" class="login-btn" id="loginBtn">
-                <span class="spinner" id="spinner"></span>
-                <span id="btnText">Sign In</span>
-            </button>
-        </form>
+            <div style="margin-top:10px;display:flex;gap:8px">
+              <button onclick="genRegistrationSQL()">Generate SQL</button>
+              <button onclick="genRegistrationJSON()">Generate JSON</button>
+              <button onclick="clearForm('reg')">Clear</button>
+            </div>
+            <div id="r_output" class="sql"></div>
+          </div>
+        </section>
+
+        <!-- ctrl_z_registration -->
+        <section id="ctrlz-form" style="display:none">
+          <h3>Ctrl_Z Registration (ctrl_z_registration)</h3>
+          <div class="helper">This form mirrors the <code>ctrl_z_registration</code> schema and will produce an INSERT or JSON.</div>
+          <label>Team ID (integer)<input id="c_team_id" type="number"/></label>
+          <label>Team name<input id="c_team_name" type="text"/></label>
+          <label>Idea<textarea id="c_idea"></textarea></label>
+
+          <div style="display:grid;gap:6px;margin-top:8px">
+            <div><strong>Member 1</strong></div>
+            <div class="row">
+              <label>Name<input id="c_m1_name" type="text"/></label>
+              <label>Email<input id="c_m1_email" type="email"/></label>
+            </div>
+            <div class="row">
+              <label>Enrollment ID<input id="c_m1_enr" type="text"/></label>
+              <label>Status<input id="c_m1_status" type="text"/></label>
+            </div>
+
+            <div><strong>Member 2</strong></div>
+            <div class="row">
+              <label>Name<input id="c_m2_name" type="text"/></label>
+              <label>Email<input id="c_m2_email" type="email"/></label>
+            </div>
+            <div class="row">
+              <label>Enrollment ID<input id="c_m2_enr" type="text"/></label>
+              <label>Status<input id="c_m2_status" type="text"/></label>
+            </div>
+
+            <div style="margin-top:6px"><strong>Member 3 (optional)</strong></div>
+            <div class="row">
+              <label>Name<input id="c_m3_name" type="text"/></label>
+              <label>Email<input id="c_m3_email" type="email"/></label>
+            </div>
+            <div class="row">
+              <label>Enrollment ID<input id="c_m3_enr" type="text"/></label>
+              <label>Status<input id="c_m3_status" type="text"/></label>
+            </div>
+
+            <div style="margin-top:6px"><strong>Member 4 (optional)</strong></div>
+            <div class="row">
+              <label>Name<input id="c_m4_name" type="text"/></label>
+              <label>Email<input id="c_m4_email" type="email"/></label>
+            </div>
+            <div class="row">
+              <label>Enrollment ID<input id="c_m4_enr" type="text"/></label>
+              <label>Status<input id="c_m4_status" type="text"/></label>
+            </div>
+
+            <label>Payment screenshot URL<input id="c_payment" type="text"/></label>
+
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <button onclick="genCtrlZSQL()">Generate SQL</button>
+              <button onclick="genCtrlZJSON()">Generate JSON</button>
+              <button onclick="clearForm('ctrlz')">Clear</button>
+            </div>
+            <div id="c_output" class="sql"></div>
+          </div>
+        </section>
+
+        <!-- students -->
+        <section id="students-form" style="display:none">
+          <h3>Students (students table)</h3>
+          <label>Enrollment<input id="s_enrollment" type="text"/></label>
+          <label>Name<input id="s_name" type="text"/></label>
+          <label>Course<input id="s_course" type="text"/></label>
+          <label>Email<input id="s_email" type="email"/></label>
+
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button onclick="genStudentSQL()">Generate SQL</button>
+            <button onclick="genStudentJSON()">Generate JSON</button>
+            <button onclick="clearForm('stu')">Clear</button>
+          </div>
+          <div id="s_output" class="sql"></div>
+        </section>
+
+        <!-- events -->
+        <section id="events-form" style="display:none">
+          <h3>Events (events table)</h3>
+          <label>Event name<input id="e_name" type="text"/></label>
+          <label>Event date<input id="e_date" type="date"/></label>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button onclick="genEventSQL()">Generate SQL</button>
+            <button onclick="genEventJSON()">Generate JSON</button>
+            <button onclick="clearForm('evt')">Clear</button>
+          </div>
+          <div id="e_output" class="sql"></div>
+        </section>
+
+      </div>
+
+      <div style="margin-top:12px" class="card">
+        <h3>Samples & Tips</h3>
+        <div class="helper">Copy the generated SQL and run in your Postgres client. The INSERT statements assume your sequences behave as in the schema (e.g. events.id default nextval...).</div>
+        <ul>
+          <li>For <code>registration</code>, <strong>id</strong> is auto-assigned by <code>registration_id_seq</code> if you omit it.</li>
+          <li>For <code>ctrl_z_registration</code> you must provide <strong>team_id</strong> because it is primary key without default.</li>
+          <li>Sanitize/escape quotes when inserting into real DB — this tool shows example escaping for single quotes.</li>
+        </ul>
+      </div>
     </div>
 
-    <script>
-        // Login credentials
-        const VALID_EMAIL = "techniki123@gmail.com";
-        const VALID_PASSWORD = "techniki@234";
+    <aside>
+      <div class="card">
+        <h3>Quick Preview / Log</h3>
+        <div class="helper">This area will show the last generated SQL or JSON. Use the copy button to copy it to clipboard.</div>
+        <pre id="preview">(no output yet)</pre>
+        <div style="margin-top:8px;display:flex;gap:8px">
+          <button onclick="copyPreview()">Copy</button>
+          <button onclick="downloadPreview()">Download JSON</button>
+        </div>
+      </div>
 
-        // DOM elements
-        const loginForm = document.getElementById('loginForm');
-        const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
-        const loginBtn = document.getElementById('loginBtn');
-        const btnText = document.getElementById('btnText');
-        const spinner = document.getElementById('spinner');
-        const errorMessage = document.getElementById('errorMessage');
-        const successMessage = document.getElementById('successMessage');
+      <div style="margin-top:12px" class="card">
+        <h4>Useful SQL snippets</h4>
+        <pre>
+-- Reset registration sequence (if you want ids from 1)
+ALTER SEQUENCE registration_id_seq RESTART WITH 1;
+-- Example insert for students
+INSERT INTO public.students (enrollment,name,course,email) VALUES ('ENR001','John Doe','BCA','john@example.com');
+        </pre>
+      </div>
+    </aside>
+  </div>
 
-        // Show error message
-        function showError(message) {
-            errorMessage.textContent = message;
-            errorMessage.style.display = 'block';
-            successMessage.style.display = 'none';
-        }
+  <script>
+    // --------------- UI Tab switching
+    document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',ev=>{
+      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+      ev.currentTarget.classList.add('active');
+      const target = ev.currentTarget.dataset.target;
+      document.querySelectorAll('section').forEach(s=>s.style.display = s.id===target ? 'block' : 'none');
+    }));
 
-        // Show success message
-        function showSuccess(message) {
-            successMessage.textContent = message;
-            successMessage.style.display = 'block';
-            errorMessage.style.display = 'none';
-        }
+    function escapeSQL(v){ if(v===null||v===undefined) return 'NULL'; return "'" + String(v).replace(/'/g,"''") + "'"; }
+    function setOutput(id, text){ document.getElementById(id).innerText = text; document.getElementById('preview').innerText = text; }
+    function copyPreview(){ navigator.clipboard.writeText(document.getElementById('preview').innerText).then(()=>alert('Copied to clipboard')) }
+    function downloadPreview(){ const data = document.getElementById('preview').innerText; const blob = new Blob([data],{type:'application/json'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='export.json'; a.click(); URL.revokeObjectURL(url); }
+    function clearForm(k){ if(k==='reg'){ ['r_team_name','r_idea','r_lead_name','r_lead_course','r_m2_name','r_m2_course','r_m3_name','r_m3_course','r_m4_name','r_m4_course'].forEach(id=>document.getElementById(id).value='') }
+      if(k==='ctrlz'){ ['c_team_id','c_team_name','c_idea','c_m1_name','c_m1_email','c_m1_enr','c_m1_status','c_m2_name','c_m2_email','c_m2_enr','c_m2_status','c_m3_name','c_m3_email','c_m3_enr','c_m3_status','c_m4_name','c_m4_email','c_m4_enr','c_m4_status','c_payment'].forEach(id=>document.getElementById(id).value='') }
+      if(k==='stu'){ ['s_enrollment','s_name','s_course','s_email'].forEach(id=>document.getElementById(id).value='') }
+      if(k==='evt'){ ['e_name','e_date'].forEach(id=>document.getElementById(id).value='') }
+      setOutput('r_output',''); setOutput('c_output',''); setOutput('s_output',''); setOutput('e_output','');
+    }
 
-        // Hide all messages
-        function hideMessages() {
-            errorMessage.style.display = 'none';
-            successMessage.style.display = 'none';
-        }
+    // ---------------- Generators
+    function genRegistrationSQL(){ const team = document.getElementById('r_team_name').value || ''; const idea = document.getElementById('r_idea').value || ''; const lead = document.getElementById('r_lead_name').value || ''; const lead_course = document.getElementById('r_lead_course').value || '';
+      const m2n=document.getElementById('r_m2_name').value||''; const m2c=document.getElementById('r_m2_course').value||'';
+      const m3n=document.getElementById('r_m3_name').value||''; const m3c=document.getElementById('r_m3_course').value||'';
+      const m4n=document.getElementById('r_m4_name').value||''; const m4c=document.getElementById('r_m4_course').value||'';
+      // Build SQL - omit empty optional columns by inserting explicit columns
+      const cols=['team_name','idea','team_lead_name','team_lead_course','team_member2_name','team_member2_course','team_member3_name','team_member3_course','team_member4_name','team_member4_course'];
+      const vals=[team,idea,lead,lead_course,m2n,m2c,m3n,m3c,m4n,m4c];
+      const sql = `INSERT INTO public.registration (${cols.join(',')}) VALUES (${vals.map(v=>escapeSQL(v)).join(',')});`;
+      setOutput('r_output',sql);
+    }
 
-        // Show loading state
-        function showLoading() {
-            loginBtn.classList.add('loading');
-            spinner.style.display = 'inline-block';
-            btnText.textContent = 'Signing In...';
-            loginBtn.disabled = true;
-        }
+    function genRegistrationJSON(){ const obj={ team_name:document.getElementById('r_team_name').value||'', idea:document.getElementById('r_idea').value||'', team_lead_name:document.getElementById('r_lead_name').value||'', team_lead_course:document.getElementById('r_lead_course').value||'', team_member2_name:document.getElementById('r_m2_name').value||'', team_member2_course:document.getElementById('r_m2_course').value||'', team_member3_name:document.getElementById('r_m3_name').value||'', team_member3_course:document.getElementById('r_m3_course').value||'', team_member4_name:document.getElementById('r_m4_name').value||'', team_member4_course:document.getElementById('r_m4_course').value||'' };
+      setOutput('r_output', JSON.stringify(obj, null, 2));
+    }
 
-        // Hide loading state
-        function hideLoading() {
-            loginBtn.classList.remove('loading');
-            spinner.style.display = 'none';
-            btnText.textContent = 'Sign In';
-            loginBtn.disabled = false;
-        }
+    function genCtrlZSQL(){ const id=document.getElementById('c_team_id').value; if(!id){ alert('team_id is required for ctrl_z_registration because it is PRIMARY KEY without default'); return }
+      const cols=[]; const vals=[];
+      const put=(col,el)=>{ const v=document.getElementById(el).value; cols.push(col); vals.push(escapeSQL(v||null)); };
+      put('team_id','c_team_id'); put('team_name','c_team_name'); put('idea','c_idea');
+      put('member_1_name','c_m1_name'); put('member_1_email','c_m1_email'); put('member_1_enrollment_id','c_m1_enr'); put('member_1_status','c_m1_status');
+      put('member_2_name','c_m2_name'); put('member_2_email','c_m2_email'); put('member_2_enrollment_id','c_m2_enr'); put('member_2_status','c_m2_status');
+      // optional members
+      if(document.getElementById('c_m3_name').value) { put('member_3_name','c_m3_name'); put('member_3_email','c_m3_email'); put('member_3_enrollment_id','c_m3_enr'); put('member_3_status','c_m3_status'); }
+      if(document.getElementById('c_m4_name').value) { put('member_4_name','c_m4_name'); put('member_4_email','c_m4_email'); put('member_4_enrollment_id','c_m4_enr'); put('member_4_status','c_m4_status'); }
+      if(document.getElementById('c_payment').value) { put('payment_screenshot_url','c_payment'); }
+      const sql = `INSERT INTO public.ctrl_z_registration (${cols.join(',')}) VALUES (${vals.join(',')});`;
+      setOutput('c_output',sql);
+    }
 
-        // Handle form submission
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = emailInput.value.trim();
-            const password = passwordInput.value.trim();
+    function genCtrlZJSON(){ const obj={ team_id:document.getElementById('c_team_id').value||null, team_name:document.getElementById('c_team_name').value||'', idea:document.getElementById('c_idea').value||'' };
+      // m1
+      obj.member_1_name=document.getElementById('c_m1_name').value||''; obj.member_1_email=document.getElementById('c_m1_email').value||''; obj.member_1_enrollment_id=document.getElementById('c_m1_enr').value||''; obj.member_1_status=document.getElementById('c_m1_status').value||'';
+      // m2
+      obj.member_2_name=document.getElementById('c_m2_name').value||''; obj.member_2_email=document.getElementById('c_m2_email').value||''; obj.member_2_enrollment_id=document.getElementById('c_m2_enr').value||''; obj.member_2_status=document.getElementById('c_m2_status').value||'';
+      // m3, m4 optional
+      if(document.getElementById('c_m3_name').value) { obj.member_3_name=document.getElementById('c_m3_name').value; obj.member_3_email=document.getElementById('c_m3_email').value; obj.member_3_enrollment_id=document.getElementById('c_m3_enr').value; obj.member_3_status=document.getElementById('c_m3_status').value }
+      if(document.getElementById('c_m4_name').value) { obj.member_4_name=document.getElementById('c_m4_name').value; obj.member_4_email=document.getElementById('c_m4_email').value; obj.member_4_enrollment_id=document.getElementById('c_m4_enr').value; obj.member_4_status=document.getElementById('c_m4_status').value }
+      if(document.getElementById('c_payment').value) obj.payment_screenshot_url=document.getElementById('c_payment').value;
+      setOutput('c_output', JSON.stringify(obj, null, 2));
+    }
 
-            // Hide previous messages
-            hideMessages();
+    function genStudentSQL(){ const enr=document.getElementById('s_enrollment').value||''; const name=document.getElementById('s_name').value||''; const course=document.getElementById('s_course').value||''; const email=document.getElementById('s_email').value||'';
+      if(!enr||!name) { alert('enrollment and name are required'); return }
+      const sql = `INSERT INTO public.students (enrollment,name,course,email) VALUES (${escapeSQL(enr)},${escapeSQL(name)},${escapeSQL(course)},${escapeSQL(email)});`;
+      setOutput('s_output',sql);
+    }
+    function genStudentJSON(){ const obj={ enrollment:document.getElementById('s_enrollment').value||'', name:document.getElementById('s_name').value||'', course:document.getElementById('s_course').value||'', email:document.getElementById('s_email').value||'' };
+      setOutput('s_output', JSON.stringify(obj, null, 2)); }
 
-            // Basic validation
-            if (!email || !password) {
-                showError('Please fill in all fields');
-                return;
-            }
+    function genEventSQL(){ const name=document.getElementById('e_name').value||''; const date=document.getElementById('e_date').value||''; if(!name||!date){ alert('event name and date required'); return }
+      const sql = `INSERT INTO public.events (event_name,event_date) VALUES (${escapeSQL(name)},${escapeSQL(date)});`;
+      setOutput('e_output',sql);
+    }
+    function genEventJSON(){ const obj={ event_name:document.getElementById('e_name').value||'', event_date:document.getElementById('e_date').value||'' }; setOutput('e_output', JSON.stringify(obj, null, 2)); }
 
-            // Show loading state
-            showLoading();
-
-            // Simulate login process
-            setTimeout(() => {
-                // Check credentials
-                if (email === VALID_EMAIL && password === VALID_PASSWORD) {
-                    showSuccess('Login successful! Redirecting to dashboard...');
-                    
-                    // Redirect to dashboard after 2 seconds
-                    setTimeout(() => {
-                        window.location.href = 'dashboard.html';
-                    }, 2000);
-                } else {
-                    showError('Invalid email or password. Please try again.');
-                    hideLoading();
-                }
-            }, 1500); // Simulate network delay
-        });
-
-        // Clear error message when user starts typing
-        emailInput.addEventListener('input', hideMessages);
-        passwordInput.addEventListener('input', hideMessages);
-
-        // Add enter key support
-        document.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                loginForm.dispatchEvent(new Event('submit'));
-            }
-        });
-
-        // Focus on email input when page loads
-        window.addEventListener('load', function() {
-            emailInput.focus();
-        });
-
-        // Add subtle animations on input focus
-        emailInput.addEventListener('focus', function() {
-            this.parentElement.style.transform = 'scale(1.02)';
-        });
-
-        emailInput.addEventListener('blur', function() {
-            this.parentElement.style.transform = 'scale(1)';
-        });
-
-        passwordInput.addEventListener('focus', function() {
-            this.parentElement.style.transform = 'scale(1.02)';
-        });
-
-        passwordInput.addEventListener('blur', function() {
-            this.parentElement.style.transform = 'scale(1)';
-        });
-    </script>
+    // Initialize
+    setOutput('preview','(no output yet)');
+  </script>
 </body>
 </html>
