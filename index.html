@@ -1168,32 +1168,40 @@
         }
         // Mobile Menu Toggle
        const menuButton = document.getElementById('menu-button');
-        const closeMenuButton = document.getElementById('close-menu');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (menuButton && mobileMenu) {
-            menuButton.addEventListener('click', function() {
-                mobileMenu.classList.remove('mobile-menu-closed');
-                mobileMenu.classList.add('mobile-menu-open');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
-            });
-        }
-        
-        if (closeMenuButton && mobileMenu) {
-            closeMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.remove('mobile-menu-open');
-                mobileMenu.classList.add('mobile-menu-closed');
-                document.body.style.overflow = ''; // Re-enable scrolling
-            });
-        }
-         const mobileLinks = document.querySelectorAll('#mobile-menu a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                mobileMenu.classList.remove('mobile-menu-open');
-                mobileMenu.classList.add('mobile-menu-closed');
-                document.body.style.overflow = '';
-            });
-        });
+const closeMenuButton = document.getElementById('close-menu');
+const mobileMenu = document.getElementById('mobile-menu');
+
+// Open mobile menu
+menuButton.addEventListener('click', function() {
+    mobileMenu.classList.remove('-translate-y-full');
+    mobileMenu.classList.add('translate-y-0');
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
+});
+
+// Close mobile menu
+closeMenuButton.addEventListener('click', function() {
+    mobileMenu.classList.add('-translate-y-full');
+    mobileMenu.classList.remove('translate-y-0');
+    document.body.style.overflow = ''; // Restore scroll
+});
+
+// Close menu when clicking any link in the mobile menu
+document.querySelectorAll('#mobile-menu a').forEach(link => {
+    link.addEventListener('click', function() {
+        mobileMenu.classList.add('-translate-y-full');
+        mobileMenu.classList.remove('translate-y-0');
+        document.body.style.overflow = '';
+    });
+});
+
+// Optional: Close menu when clicking outside the menu content
+mobileMenu.addEventListener('click', function(e) {
+    if (e.target === mobileMenu) {
+        mobileMenu.classList.add('-translate-y-full');
+        mobileMenu.classList.remove('translate-y-0');
+        document.body.style.overflow = '';
+    }
+});
         // Navbar Scroll Effect
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
@@ -1304,31 +1312,6 @@
                 }, 2000);
             }
         });
-
-        // Mobile menu toggle logic (clean and correct)
-    
-   
-   
-    menuButton.addEventListener('click', function() {
-        mobileMenu.classList.remove('-translate-y-full');
-        mobileMenu.classList.add('translate-y-0');
-        document.body.style.overflow = 'hidden'; // Prevent background scroll
-    });
-
-    closeMenu.addEventListener('click', function() {
-        mobileMenu.classList.add('-translate-y-full');
-        mobileMenu.classList.remove('translate-y-0');
-        document.body.style.overflow = ''; // Restore scroll
-    });
-
-    // Optional: Close menu when clicking outside the menu content
-    mobileMenu.addEventListener('click', function(e) {
-        if (e.target === mobileMenu) {
-            mobileMenu.classList.add('-translate-y-full');
-            mobileMenu.classList.remove('translate-y-0');
-            document.body.style.overflow = '';
-        }
-    });
     </script>
 
 </body>
