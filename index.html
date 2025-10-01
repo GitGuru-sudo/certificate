@@ -7,10 +7,9 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Techनिकी - Empowering Innovation in Technology</title>
-    <meta name="description" content="Join Techनिकी, the premier tech community for AI, ML, Web Development, AR, and VR enthusiasts. Learn, connect, and innovate together.">
-    <meta name="keywords" content="Techniki, AI, Machine Learning, Web Development, AR, VR, Technology Community, Innovation">
-    <link rel="icon" type="image/x-icon" href="assets/images/logo/logo.ico">
+    <title>Tech Blog - Techनिकी</title>
+    <meta name="description" content="Read the latest tech articles, tutorials, and insights from the Techniki community. Stay updated with AI/ML, Web Development, AR/VR trends.">
+    <link rel="icon" type="image/x-icon" href="../assets/images/logo/logo.ico">
     
     <!-- Enhanced Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -20,244 +19,53 @@
     
     <!-- CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        /* Mobile-specific styles */
-        @media (max-width: 768px) {
-            #vanta-bg {
-                min-height: 100vh !important;
-            }
-            
-            .hero-title {
-                font-size: 3.5rem !important;
-                line-height: 1.2 !important;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.2rem !important;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(1, 1fr) !important;
-                gap: 1.5rem !important;
-            }
-            
-            .stats-number {
-                font-size: 2.5rem !important;
-            }
-            
-            .domain-card {
-                margin-bottom: 1.5rem;
-            }
-            
-            .mission-card, .domain-card {
-                margin-bottom: 1.5rem;
-            }
-            
-            .floating-particles {
-                display: none; /* Improve performance on mobile */
-            }
-            
-            .mobile-menu-open {
-                transform: translateY(0) !important;
-            }
-            
-            .mobile-menu-closed {
-                transform: translateY(-100%) !important;
-            }
-            
-            /* Fix for mobile navigation */
-            #mobile-menu {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                z-index: 9999;
-                height: 100vh;
-                overflow-y: auto;
-                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-            
-            /* Mobile menu states */
-            .mobile-menu-closed {
-                transform: translateY(-100%);
-                visibility: hidden;
-            }
-            
-            .mobile-menu-open {
-                transform: translateY(0);
-                visibility: visible;
-            }
-            
-            /* Mobile menu animations */
-            #mobile-menu {
-                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-                           visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-            
-            /* Animate menu items */
-            #mobile-menu nav a {
-                opacity: 0;
-                transform: translateX(-20px);
-                transition: opacity 0.3s ease, transform 0.3s ease;
-                transition-delay: 0s;
-            }
-            
-            #mobile-menu.mobile-menu-open nav a {
-                opacity: 1;
-                transform: translateX(0);
-            }
-            
-            #mobile-menu.mobile-menu-open nav a:nth-child(1) { transition-delay: 0.1s; }
-            #mobile-menu.mobile-menu-open nav a:nth-child(2) { transition-delay: 0.15s; }
-            #mobile-menu.mobile-menu-open nav a:nth-child(3) { transition-delay: 0.2s; }
-            #mobile-menu.mobile-menu-open nav a:nth-child(4) { transition-delay: 0.25s; }
-            #mobile-menu.mobile-menu-open nav a:nth-child(5) { transition-delay: 0.3s; }
-            #mobile-menu.mobile-menu-open nav a:nth-child(6) { transition-delay: 0.35s; }
-            #mobile-menu.mobile-menu-open nav a:nth-child(7) { transition-delay: 0.4s; }
-            
-            /* Ensure close button is clickable */
-            #close-menu {
-                z-index: 10000;
-                cursor: pointer;
-                position: absolute;
-                top: 1.25rem;
-                right: 1.25rem;
-                width: 3rem;
-                height: 3rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 50%;
-                background: rgba(0, 0, 0, 0.3);
-                backdrop-filter: blur(10px);
-                transition: all 0.3s ease;
-            }
-            
-            #close-menu:hover {
-                background: rgba(59, 130, 246, 0.3);
-                transform: scale(1.1);
-            }
-            
-            /* Screen reader only class */
-            .sr-only {
-                position: absolute;
-                width: 1px;
-                height: 1px;
-                padding: 0;
-                margin: -1px;
-                overflow: hidden;
-                clip: rect(0, 0, 0, 0);
-                white-space: nowrap;
-                border: 0;
-            }
-            
-            /* Improve button sizes for mobile */
-            .hero-btn, .join-btn {
-                padding: 0.8rem 1.5rem !important;
-                font-size: 1rem !important;
-                width: 100%;
-                text-align: center;
-                margin-bottom: 0.5rem;
-            }
-            
-            .btn-container {
-                flex-direction: column;
-            }
-            
-            /* Fix text overflow issues */
-            .text-overflow-fix {
-                overflow-wrap: break-word;
-                word-wrap: break-word;
-            }
-        }
-        
-        /* General improvements */
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(to right, #3b82f6, #8b5cf6);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        /* Performance optimization for mobile */
-        @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-        
-        /* Prevent horizontal overflow and ensure proper scrolling */
-        html, body {
-            overflow-x: hidden;
-            margin: 0;
-            padding: 0;
-        }
-        
-        * {
-            box-sizing: border-box;
-        }
-
-    </style>
+    <link rel="stylesheet" href="../assets/css/styles.css?v=20250919011604">
     
     <!-- Enhanced Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="../assets/js/scripts.js?v=20250919011604"></script>
     
-    <!-- VANTA.NET scripts - Load conditionally for better performance -->
-    <script>
-        // Only load heavy scripts on desktop
-        if (window.innerWidth > 768) {
-            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"><\/script>');
-            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.21/vanta.net.min.js"><\/script>');
-        }
-    </script>
+    <!-- VANTA.NET scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.21/vanta.net.min.js"></script>
 </head>
 <body class="font-inter bg-gray-900" id="vanta-bg">
+
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 transition-all duration-300 bg-black bg-opacity-70 backdrop-blur-md" id="navbar">
         <div class="container mx-auto px-4 py-3">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-2">
-                    <a href="index.html" class="flex items-center space-x-2 group">
-                        <img src="assets/images/logo/logo.png" alt="Techनिकी Logo" class="h-8 w-auto transition-transform duration-300 group-hover:scale-110">
+                    <a href="../index.html" class="flex items-center space-x-2 group">
+                        <img src="../assets/images/logo/logo.png" alt="Techनिकी Logo" class="h-8 w-auto transition-transform duration-300 group-hover:scale-110">
                     </a>
                 </div>
                 
                 <div class="hidden lg:flex items-center space-x-6">
-                    <a href="pages/events.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
+                    <a href="events.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
                         <i class="fas fa-calendar-alt mr-1"></i>Events
                     </a>
-                    <a href="pages/certificates.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
+                    <a href="certificates.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
                         <i class="fas fa-certificate mr-1"></i>Certificates
                     </a>
-                    <a href="pages/team.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
+                    <a href="team.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
                         <i class="fas fa-users mr-1"></i>Team
                     </a>
-                    <a href="pages/blog.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
+                    <a href="blog.html" class="nav-link text-blue-400 hover:text-blue-300 transition-colors duration-300 relative px-2 py-1">
                         <i class="fas fa-blog mr-1"></i>Blog
                     </a>
-                    <a href="pages/projects.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
+                    <a href="projects.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
                         <i class="fas fa-project-diagram mr-1"></i>Projects
                     </a>
-                    <a href="pages/form.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
+                    <a href="../form.html" class="nav-link text-white hover:text-blue-400 transition-colors duration-300 relative px-2 py-1">
                         <i class="fas fa-envelope mr-1"></i>Contact
                     </a>
                 </div>
                 
                 <div class="flex items-center space-x-3">
-                    <a href="pages/form.html" class="join-btn bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full font-semibold transition-all duration-300 hover:from-purple-600 hover:to-blue-500 hover:scale-105 shadow-lg hover:shadow-xl text-sm hidden sm:block">
+                    <a href="ambassador.html" class="join-btn bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full font-semibold transition-all duration-300 hover:from-purple-600 hover:to-blue-500 hover:scale-105 shadow-lg hover:shadow-xl text-sm hidden sm:block">
                         <i class="fas fa-rocket mr-1"></i>JOIN NOW
                     </a>
                     <button class="lg:hidden text-white hover:text-blue-400 transition-colors focus:outline-none relative z-50" id="menu-button" aria-label="Toggle menu" aria-expanded="false">
@@ -276,53 +84,52 @@
                 <i class="fas fa-times"></i>
             </button>
             <nav class="flex flex-col space-y-8 mt-10" role="navigation" aria-label="Mobile navigation">
-                <a href="pages/events.html" class="text-white hover:text-blue-400 transition-colors text-xl py-2 border-b border-gray-700" role="menuitem">
+                <a href="events.html" class="text-white hover:text-blue-400 transition-colors text-xl py-2 border-b border-gray-700" role="menuitem">
                     <i class="fas fa-calendar-alt mr-3"></i>Events
                 </a>
-                <a href="pages/certificates.html" class="text-white hover:text-blue-400 transition-colors text-xl py-2 border-b border-gray-700" role="menuitem">
+                <a href="certificates.html" class="text-white hover:text-blue-400 transition-colors text-xl py-2 border-b border-gray-700" role="menuitem">
                     <i class="fas fa-certificate mr-3"></i>Certificates
                 </a>
-                <a href="pages/team.html" class="text-white hover:text-blue-400 transition-colors text-xl py-2 border-b border-gray-700" role="menuitem">
+                <a href="team.html" class="text-white hover:text-blue-400 transition-colors text-xl py-2 border-b border-gray-700" role="menuitem">
                     <i class="fas fa-users mr-3"></i>Team
                 </a>
-                <a href="pages/blog.html" class="text-white hover:text-blue-400 transition-colors text-xl py-2 border-b border-gray-700" role="menuitem">
+                <a href="blog.html" class="text-blue-400 hover:text-blue-300 transition-colors text-xl py-2 border-b border-gray-700" role="menuitem">
                     <i class="fas fa-blog mr-3"></i>Blog
                 </a>
-                <a href="pages/projects.html" class="text-white hover:text-blue-400 transition-colors text-xl py-2 border-b border-gray-700" role="menuitem">
+                <a href="projects.html" class="text-white hover:text-blue-400 transition-colors text-xl py-2 border-b border-gray-700" role="menuitem">
                     <i class="fas fa-project-diagram mr-3"></i>Projects
                 </a>
                 <a href="#footer" class="text-white hover:text-blue-400 transition-colors text-xl py-2 border-b border-gray-700" role="menuitem">
                     <i class="fas fa-envelope mr-3"></i>Contact
                 </a>
-                <a href="pages/form.html" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 text-center mt-8" role="menuitem">
+                <a href="ambassador.html" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 text-center mt-8" role="menuitem">
                     <i class="fas fa-rocket mr-2"></i>JOIN COMMUNITY
                 </a>
             </nav>
         </div>
     </div>
-
-
+ 
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center pt-20">
         <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-purple-900/20"></div>
         <div class="container mx-auto px-6 text-center relative z-10">
             <div data-aos="fade-up" data-aos-duration="1000">
                 <h1 class="text-6xl md:text-8xl font-bold text-white mb-6 leading-tight">
-                    Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Projects</span>
+                    Tech <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Blog</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                    Innovative Solutions Built by the Techनिकी Community
+                    Insights, Tutorials, and Innovations from the Techनिकी Community
                 </p>
                 <p class="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
-                    Explore cutting-edge projects spanning AI/ML, Web Development, AR/VR, and mobile applications. 
-                    Each project represents hours of innovation, learning, and collaboration.
+                    Explore the latest trends in AI/ML, Web Development, AR/VR, and cutting-edge technologies. 
+                    Learn from experts and share your knowledge with our vibrant community.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="#featured-projects" class="hero-btn bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl">
-                        <i class="fas fa-code mr-2"></i>View Projects
+                    <a href="#latest-posts" class="hero-btn bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl">
+                        <i class="fas fa-book-open mr-2"></i>Read Articles
                     </a>
-                    <a href="#contribute" class="hero-btn bg-transparent border-2 border-blue-400 text-blue-400 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-blue-400 hover:text-white">
-                        <i class="fas fa-plus mr-2"></i>Contribute
+                    <a href="#write-for-us" class="hero-btn bg-transparent border-2 border-blue-400 text-blue-400 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-blue-400 hover:text-white">
+                        <i class="fas fa-pen mr-2"></i>Write for Us
                     </a>
                 </div>
             </div>
@@ -333,797 +140,283 @@
             <i class="fas fa-chevron-down text-white text-2xl"></i>
         </div>
     </section>
-    <!-- Project Statistics -->
-    <section class="py-20 bg-gradient-to-br from-gray-900 to-black relative">
+
+    <!-- Main Content -->
+    <main class="relative z-10 py-20">
         <div class="container mx-auto px-6">
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8" data-aos="fade-up">
-                <div class="text-center">
-                    <div class="glass-card p-6 rounded-2xl">
-                        <div class="text-4xl font-bold text-blue-400 mb-2 counter" data-count="50">0</div>
-                        <div class="text-gray-300">Total Projects</div>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <div class="glass-card p-6 rounded-2xl">
-                        <div class="text-4xl font-bold text-purple-400 mb-2 counter" data-count="15">0</div>
-                        <div class="text-gray-300">AI/ML Projects</div>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <div class="glass-card p-6 rounded-2xl">
-                        <div class="text-4xl font-bold text-green-400 mb-2 counter" data-count="25">0</div>
-                        <div class="text-gray-300">Web Projects</div>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <div class="glass-card p-6 rounded-2xl">
-                        <div class="text-4xl font-bold text-yellow-400 mb-2 counter" data-count="10">0</div>
-                        <div class="text-gray-300">Mobile Apps</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Project Filters -->
-    <section class="py-20 bg-gray-900">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-                    Explore by <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Category</span>
-                </h2>
-                <p class="text-gray-400 text-lg max-w-2xl mx-auto">
-                    Filter projects by technology domain and find exactly what interests you
-                </p>
-            </div>
-
-            <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up" data-aos-delay="200">
-                <button class="filter-btn active bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105" data-filter="all">
-                    <i class="fas fa-th mr-2"></i>All Projects
-                </button>
-                <button class="filter-btn bg-gray-800 text-gray-300 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-gray-700 hover:text-white" data-filter="ai-ml">
-                    <i class="fas fa-brain mr-2"></i>AI/ML
-                </button>
-                <button class="filter-btn bg-gray-800 text-gray-300 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-gray-700 hover:text-white" data-filter="web">
-                    <i class="fas fa-globe mr-2"></i>Web Development
-                </button>
-                <button class="filter-btn bg-gray-800 text-gray-300 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-gray-700 hover:text-white" data-filter="robotics">
-                    <i class="fas fa-robot mr-2"></i>Robotics
-                </button>
-                <button class="filter-btn bg-gray-800 text-gray-300 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-gray-700 hover:text-white" data-filter="mobile">
-                    <i class="fas fa-mobile-alt mr-2"></i>Mobile Apps
-                </button>
-                <button class="filter-btn bg-gray-800 text-gray-300 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-gray-700 hover:text-white" data-filter="arvr">
-                    <i class="fas fa-vr-cardboard mr-2"></i>AR/VR
-                </button>
-                <button class="filter-btn bg-gray-800 text-gray-300 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-gray-700 hover:text-white" data-filter="blockchain">
-                    <i class="fas fa-link mr-2"></i>Blockchain
-                </button>
-                
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Projects -->
-    <section id="featured-projects" class="py-20 bg-gradient-to-br from-black to-gray-900">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-                    Featured <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Projects</span>
-                </h2>
-                <p class="text-gray-400 text-lg max-w-2xl mx-auto">
-                    Highlighting our most innovative and impactful community projects
-                </p>
-            </div>
-
-                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-                            <!-- Featured Project 1 - Astrix Rover -->
-<div class="glass-card rounded-2xl overflow-hidden group project-item" data-category="robotics" data-aos="fade-up">
-    <div class="relative">
-        <img src="/assets/images/logo/Astrix.png" alt="Astrix Rover Logo" class="h-64 w-full object-contain bg-gray-800 rounded-2xl" />
-        <div class="absolute top-4 left-4">
-            <span class="bg-cyan-500 text-white px-3 py-1 rounded-full text-sm font-semibold">robotics</span>
-        </div>
-        <div class="absolute top-4 right-4">
-            <div class="flex space-x-2">
-                <span class="bg-green-500 text-white px-2 py-1 rounded text-xs">Live</span>
-            </div>
-        </div>
-    </div>
-    <div class="p-8">
-        <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-cyan-400 transition-colors">
-            Astrix Rover
-        </h3>
-        <p class="text-gray-400 mb-6 leading-relaxed">
-            A comprehensive rover project featuring both a live website and detailed documentation. 
-            Explore the project showcase and dive deep into technical specifications, research papers, and implementation details.
-        </p>
-        <div class="flex flex-wrap gap-2 mb-6">
-            <span class="tech-tag">Website</span>
-            <span class="tech-tag">Research</span>
-            <span class="tech-tag">Technical Specs</span>
-        </div>
-        <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center space-x-4 text-gray-400">
-                <div class="flex items-center">
-                    <i class="fas fa-star text-yellow-400 mr-1"></i>
-                    <span>4.9</span>
-                </div>
-                <div class="flex items-center justify-center flex-1">
-                    <i class="fas fa-eye mr-1"></i>
-                    <span>2.5k</span>
-                </div>
-            </div>
-            <a href="https://www.astrixrover.tech" target="_blank" class="project-link bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-lg transition-colors">
-                <i class="fas fa-globe mr-2"></i>Website
-            </a>
-        </div>
-    </div>
-</div>
-                            <!-- Featured Project 2 - Smart Campus Assistant -->
-                 <div class="glass-card rounded-2xl overflow-hidden group project-item" data-category="ai-ml" data-aos="fade-up" data-aos-delay="200">
-                     <div class="relative">
-                         <div class="h-64 bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center">
-                             <i class="fas fa-brain text-6xl text-white"></i>
-                         </div>
-                         <div class="absolute top-4 left-4">
-                             <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">AI/ML</span>
-                         </div>
-                         <div class="absolute top-4 right-4">
-                             <div class="flex space-x-2">
-                                 <span class="bg-green-500 text-white px-2 py-1 rounded text-xs">Active</span>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="p-8">
-                         <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors">
-                             Smart Campus Assistant
-                         </h3>
-                         <p class="text-gray-400 mb-6 leading-relaxed">
-                             An AI-powered chatbot that helps students navigate campus resources, answer academic queries, 
-                             and provide personalized recommendations using natural language processing.
-                         </p>
-                         <div class="flex flex-wrap gap-2 mb-4">
-                             <span class="tech-tag">Python</span>
-                             <span class="tech-tag">TensorFlow</span>
-                             <span class="tech-tag">NLP</span>
-                             <span class="tech-tag">Flask</span>
-                         </div>
-                         <div class="flex items-center justify-center mb-4">
-                             <div class="flex items-center space-x-4 text-gray-400">
-                                 <div class="flex items-center">
-                                     <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                     <span>4.8</span>
-                                 </div>
-                                 <div class="flex items-center">
-                                     <i class="fas fa-code-branch mr-1"></i>
-                                     <span>12 forks</span>
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="flex space-x-3 justify-center">
-                             <a href="#" class="project-link bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors">
-                                 <i class="fas fa-external-link-alt mr-2"></i>Demo
-                             </a>
-                             <a href="#" class="project-link bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors">
-                                 <i class="fab fa-github mr-2"></i>Code
-                             </a>
-                         </div>
-                     </div>
-                 </div>
-
-                 <!-- Featured Project 3 - EcoTracker Platform -->
-                 <div class="glass-card rounded-2xl overflow-hidden group project-item" data-category="web" data-aos="fade-up" data-aos-delay="400">
-                     <div class="relative">
-                         <div class="h-64 bg-gradient-to-br from-green-600 to-blue-700 flex items-center justify-center">
-                             <i class="fas fa-globe text-6xl text-white"></i>
-                         </div>
-                         <div class="absolute top-4 left-4">
-                             <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Web</span>
-                         </div>
-                         <div class="absolute top-4 right-4">
-                             <div class="flex space-x-2">
-                                 <span class="bg-green-500 text-white px-2 py-1 rounded text-xs">Active</span>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="p-8">
-                         <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-green-400 transition-colors">
-                             EcoTracker Platform
-                         </h3>
-                         <p class="text-gray-400 mb-6 leading-relaxed">
-                             A comprehensive web platform for tracking carbon footprint, promoting sustainable practices, 
-                             and connecting environmentally conscious individuals and organizations.
-                         </p>
-                         <div class="flex flex-wrap gap-2 mb-4">
-                             <span class="tech-tag">React</span>
-                             <span class="tech-tag">Node.js</span>
-                             <span class="tech-tag">MongoDB</span>
-                             <span class="tech-tag">Chart.js</span>
-                         </div>
-                         <div class="flex items-center justify-center mb-4">
-                             <div class="flex items-center space-x-4 text-gray-400">
-                                 <div class="flex items-center">
-                                     <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                     <span>4.9</span>
-                                 </div>
-                                 <div class="flex items-center">
-                                     <i class="fas fa-code-branch mr-1"></i>
-                                     <span>18 forks</span>
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="flex space-x-3 justify-center">
-                             <a href="#" class="project-link bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-colors">
-                                 <i class="fas fa-external-link-alt mr-2"></i>Demo
-                             </a>
-                             <a href="#" class="project-link bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors">
-                                 <i class="fab fa-github mr-2"></i>Code
-                             </a>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-        </div>
-    </section>
-
-    <!-- All Projects Grid -->
-    <section class="py-20 bg-gray-900">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-                    All <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Projects</span>
-                </h2>
-                <p class="text-gray-400 text-lg max-w-2xl mx-auto">
-                    Browse through our complete collection of community-driven projects
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project Card 1 -->
-                <div class="glass-card rounded-xl overflow-hidden group project-item" data-category="mobile" data-aos="fade-up">
-                    <div class="relative">
-                        <div class="h-48 bg-gradient-to-br from-purple-600 to-pink-700 flex items-center justify-center">
-                            <i class="fas fa-mobile-alt text-4xl text-white"></i>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="bg-purple-500 text-white px-2 py-1 rounded-full text-xs font-semibold">Mobile</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">
-                            StudyBuddy App
-                        </h3>
-                        <p class="text-gray-400 mb-4 text-sm leading-relaxed">
-                            A collaborative study platform connecting students for group learning sessions and knowledge sharing.
-                        </p>
-                        <div class="flex flex-wrap gap-1 mb-4">
-                            <span class="tech-tag-small">Flutter</span>
-                            <span class="tech-tag-small">Firebase</span>
-                            <span class="tech-tag-small">Dart</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3 text-gray-400 text-sm">
-                                <div class="flex items-center">
-                                    <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                    <span>4.6</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="fas fa-download mr-1"></i>
-                                    <span>2.5k</span>
-                                </div>
-                            </div>
-                            <div class="flex space-x-2">
-                                <a href="#" class="project-link-small bg-purple-500 hover:bg-purple-600 text-white px-3 py-1 rounded text-sm transition-colors">
-                                    <i class="fas fa-external-link-alt mr-1"></i>Demo
-                                </a>
-                                <a href="#" class="project-link-small bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm transition-colors">
-                                    <i class="fab fa-github mr-1"></i>Code
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 2 -->
-                <div class="glass-card rounded-xl overflow-hidden group project-item" data-category="arvr" data-aos="fade-up" data-aos-delay="100">
-                    <div class="relative">
-                        <div class="h-48 bg-gradient-to-br from-indigo-600 to-blue-700 flex items-center justify-center">
-                            <i class="fas fa-vr-cardboard text-4xl text-white"></i>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="bg-indigo-500 text-white px-2 py-1 rounded-full text-xs font-semibold">AR/VR</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">
-                            Virtual Lab Experience
-                        </h3>
-                        <p class="text-gray-400 mb-4 text-sm leading-relaxed">
-                            Immersive VR chemistry lab allowing students to conduct experiments in a safe virtual environment.
-                        </p>
-                        <div class="flex flex-wrap gap-1 mb-4">
-                            <span class="tech-tag-small">Unity</span>
-                            <span class="tech-tag-small">C#</span>
-                            <span class="tech-tag-small">VR SDK</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3 text-gray-400 text-sm">
-                                <div class="flex items-center">
-                                    <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                    <span>4.7</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="fas fa-eye mr-1"></i>
-                                    <span>1.2k</span>
-                                </div>
-                            </div>
-                            <div class="flex space-x-2">
-                                <a href="#" class="project-link-small bg-indigo-500 hover:bg-indigo-600 text-white px-3 py-1 rounded text-sm transition-colors">
-                                    <i class="fas fa-external-link-alt mr-1"></i>Demo
-                                </a>
-                                <a href="#" class="project-link-small bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm transition-colors">
-                                    <i class="fab fa-github mr-1"></i>Code
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 3 -->
-                <div class="glass-card rounded-xl overflow-hidden group project-item" data-category="blockchain" data-aos="fade-up" data-aos-delay="200">
-                    <div class="relative">
-                        <div class="h-48 bg-gradient-to-br from-yellow-600 to-orange-700 flex items-center justify-center">
-                            <i class="fas fa-link text-4xl text-white"></i>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="bg-yellow-500 text-white px-2 py-1 rounded-full text-xs font-semibold">Blockchain</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-colors">
-                            CertifyChain
-                        </h3>
-                        <p class="text-gray-400 mb-4 text-sm leading-relaxed">
-                            Blockchain-based certificate verification system ensuring authenticity and preventing fraud.
-                        </p>
-                        <div class="flex flex-wrap gap-1 mb-4">
-                            <span class="tech-tag-small">Solidity</span>
-                            <span class="tech-tag-small">Web3.js</span>
-                            <span class="tech-tag-small">Ethereum</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3 text-gray-400 text-sm">
-                                <div class="flex items-center">
-                                    <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                    <span>4.5</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="fas fa-shield-alt mr-1"></i>
-                                    <span>500+</span>
-                                </div>
-                            </div>
-                            <div class="flex space-x-2">
-                                <a href="#" class="project-link-small bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm transition-colors">
-                                    <i class="fas fa-external-link-alt mr-1"></i>Demo
-                                </a>
-                                <a href="#" class="project-link-small bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm transition-colors">
-                                    <i class="fab fa-github mr-1"></i>Code
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 4 -->
-                <div class="glass-card rounded-xl overflow-hidden group project-item" data-category="ai-ml" data-aos="fade-up">
-                    <div class="relative">
-                        <div class="h-48 bg-gradient-to-br from-red-600 to-pink-700 flex items-center justify-center">
-                            <i class="fas fa-robot text-4xl text-white"></i>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold">AI/ML</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-red-400 transition-colors">
-                            HealthBot Assistant
-                        </h3>
-                        <p class="text-gray-400 mb-4 text-sm leading-relaxed">
-                            AI-powered health assistant providing symptom analysis and preliminary health recommendations.
-                        </p>
-                        <div class="flex flex-wrap gap-1 mb-4">
-                            <span class="tech-tag-small">Python</span>
-                            <span class="tech-tag-small">scikit-learn</span>
-                            <span class="tech-tag-small">FastAPI</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3 text-gray-400 text-sm">
-                                <div class="flex items-center">
-                                    <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                    <span>4.8</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="fas fa-users mr-1"></i>
-                                    <span>3.2k</span>
-                                </div>
-                            </div>
-                            <div class="flex space-x-2">
-                                <a href="#" class="project-link-small bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm transition-colors">
-                                    <i class="fas fa-external-link-alt mr-1"></i>Demo
-                                </a>
-                                <a href="#" class="project-link-small bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm transition-colors">
-                                    <i class="fab fa-github mr-1"></i>Code
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 5 -->
-                <div class="glass-card rounded-xl overflow-hidden group project-item" data-category="web" data-aos="fade-up" data-aos-delay="100">
-                    <div class="relative">
-                        <div class="h-48 bg-gradient-to-br from-teal-600 to-green-700 flex items-center justify-center">
-                            <i class="fas fa-chart-line text-4xl text-white"></i>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="bg-teal-500 text-white px-2 py-1 rounded-full text-xs font-semibold">Web</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-teal-400 transition-colors">
-                            CodeMetrics Dashboard
-                        </h3>
-                        <p class="text-gray-400 mb-4 text-sm leading-relaxed">
-                            Analytics dashboard for tracking coding progress and performance metrics for student developers.
-                        </p>
-                        <div class="flex flex-wrap gap-1 mb-4">
-                            <span class="tech-tag-small">Vue.js</span>
-                            <span class="tech-tag-small">Express</span>
-                            <span class="tech-tag-small">PostgreSQL</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3 text-gray-400 text-sm">
-                                <div class="flex items-center">
-                                    <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                    <span>4.4</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="fas fa-chart-bar mr-1"></i>
-                                    <span>800+</span>
-                                </div>
-                            </div>
-                            <div class="flex space-x-2">
-                                <a href="#" class="project-link-small bg-teal-500 hover:bg-teal-600 text-white px-3 py-1 rounded text-sm transition-colors">
-                                    <i class="fas fa-external-link-alt mr-1"></i>Demo
-                                </a>
-                                <a href="#" class="project-link-small bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm transition-colors">
-                                    <i class="fab fa-github mr-1"></i>Code
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 6 - Techniki Website -->
-                <div class="glass-card rounded-xl overflow-hidden group project-item" data-category="web" data-aos="fade-up" data-aos-delay="200">
-                    <div class="relative">
-                        <div class="h-48 bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center">
-                            <img src="../assets/images/logo/logo.png" alt="Techniki Logo" class="h-20 w-auto">
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-semibold">Web</span>
-                        </div>
-                        <div class="absolute top-3 right-3">
-                            <span class="bg-green-500 text-white px-2 py-1 rounded text-xs">Live</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
-                            Techनिकी Website
-                        </h3>
-                        <p class="text-gray-400 mb-4 text-sm leading-relaxed">
-                            Modern, responsive community website showcasing events, projects, and fostering collaboration among tech enthusiasts.
-                        </p>
-                        <div class="flex flex-wrap gap-1 mb-4">
-                            <span class="tech-tag-small">HTML5</span>
-                            <span class="tech-tag-small">CSS3</span>
-                            <span class="tech-tag-small">JavaScript</span>
-                            <span class="tech-tag-small">Tailwind</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3 text-gray-400 text-sm">
-                                <div class="flex items-center">
-                                    <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                    <span>5.0</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="fas fa-users mr-1"></i>
-                                    <span>500+</span>
-                                </div>
-                            </div>
-                            <div class="flex space-x-2">
-                                <a href="index" class="project-link-small bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm transition-colors">
-                                    <i class="fas fa-external-link-alt mr-1"></i>Live
-                                </a>
-                                <a href="#" class="project-link-small bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm transition-colors">
-                                    <i class="fab fa-github mr-1"></i>Code
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 7 - AI Tools Review Web App -->
-                <div class="glass-card rounded-xl overflow-hidden group project-item hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-300" data-category="web" data-aos="fade-up" data-aos-delay="300">
-                    <div class="relative">
-                        <div class="h-48 bg-gradient-to-br from-orange-500 via-red-500 to-pink-600 flex items-center justify-center">
-                            <i class="fas fa-robot text-5xl text-white drop-shadow-lg"></i>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="bg-orange-500 text-white px-2 py-1 rounded-full text-xs font-semibold">Web</span>
-                        </div>
-                        <div class="absolute top-3 right-3">
-                            <span class="bg-green-500 text-white px-2 py-1 rounded text-xs">Active</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-orange-400 transition-colors">
-                            AI Tools Review Web App
-                        </h3>
-                        <p class="text-gray-400 mb-4 text-sm leading-relaxed">
-                            A Django-based web application where users can submit, view, and explore reviews of different AI tools with WhatsApp notifications and Excel data handling.
-                        </p>
-                        <div class="flex flex-wrap gap-1 mb-4">
-                            <span class="tech-tag-small bg-orange-100 text-orange-800 border border-orange-200">Django</span>
-                            <span class="tech-tag-small bg-blue-100 text-blue-800 border border-blue-200">Python</span>
-                            <span class="tech-tag-small bg-green-100 text-green-800 border border-green-200">WhatsApp API</span>
-                            <span class="tech-tag-small bg-purple-100 text-purple-800 border border-purple-200">Excel</span>
-                        </div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center space-x-3 text-gray-400 text-sm">
-                                <div class="flex items-center">
-                                    <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                    <span>4.7</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="fas fa-code-branch mr-1"></i>
-                                    <span>8 forks</span>
-                                </div>
-                            </div>
-                            <div class="flex space-x-2">
-                                <a href="https://github.com/GitGuru-sudo/review.git" target="_blank" class="project-link-small bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded text-sm transition-colors">
-                                    <i class="fas fa-external-link-alt mr-1"></i>Demo
-                                </a>
-                                <a href="https://github.com/GitGuru-sudo/review.git" target="_blank" class="project-link-small bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm transition-colors">
-                                    <i class="fab fa-github mr-1"></i>Code
-                                </a>
-                            </div>
-                        </div>
-                                                 <div class="text-right">
-                             <p class="text-white text-sm italic">-by SAKSHAM</p>
-                         </div>
-                     </div>
-                 </div>
-
-                 <!-- Project Card 8 - KcKabir Portfolio Projects -->
-                 <div class="glass-card rounded-xl overflow-hidden group project-item hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300" data-category="web" data-aos="fade-up" data-aos-delay="400">
-                     <div class="relative">
-                         <div class="h-48 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 flex items-center justify-center">
-                             <i class="fas fa-code text-5xl text-white drop-shadow-lg"></i>
-                         </div>
-                         <div class="absolute top-3 left-3">
-                             <span class="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-semibold">Web</span>
-                         </div>
-                         <div class="absolute top-3 right-3">
-                             <span class="bg-green-500 text-white px-2 py-1 rounded text-xs">Active</span>
-                         </div>
-                     </div>
-                     <div class="p-6">
-                         <h3 class="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
-                             Portfolio & Web Projects
-                         </h3>
-                         <p class="text-gray-400 mb-4 text-sm leading-relaxed">
-                             A collection of creative web projects including HTML portfolios, interactive dice games, drum games, and various frontend applications showcasing modern web development skills.
-                         </p>
-                         <div class="flex flex-wrap gap-1 mb-4">
-                             <span class="tech-tag-small bg-blue-100 text-blue-800 border border-blue-200">HTML5</span>
-                             <span class="tech-tag-small bg-yellow-100 text-yellow-800 border border-yellow-200">JavaScript</span>
-                             <span class="tech-tag-small bg-green-100 text-green-800 border border-green-200">CSS3</span>
-                             <span class="tech-tag-small bg-purple-100 text-purple-800 border border-purple-200">Web Games</span>
-                         </div>
-                         <div class="flex items-center justify-between mb-3">
-                             <div class="flex items-center space-x-3 text-gray-400 text-sm">
-                                 <div class="flex items-center">
-                                     <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                     <span>4.6</span>
-                                 </div>
-                                 <div class="flex items-center">
-                                     <i class="fas fa-code-branch mr-1"></i>
-                                     <span>6 forks</span>
-                                 </div>
-                             </div>
-                             <div class="flex space-x-2">
-                                 <a href="https://github.com/KcKabir" target="_blank" class="project-link-small bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm transition-colors">
-                                     <i class="fas fa-external-link-alt mr-1"></i>Demo
-                                 </a>
-                                 <a href="https://github.com/KcKabir" target="_blank" class="project-link-small bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm transition-colors">
-                                     <i class="fab fa-github mr-1"></i>Code
-                                 </a>
-                             </div>
-                         </div>
-                         <div class="text-right">
-                             <p class="text-white text-sm italic">-by KABIR</p>
-                         </div>
-                     </div>
-                 </div>
-
-                 <!-- Project Card 9 - Online Voting System -->
-                 <div class="glass-card rounded-xl overflow-hidden group project-item hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-300" data-category="web" data-aos="fade-up" data-aos-delay="500">
-                     <div class="relative">
-                         <div class="h-48 bg-gradient-to-br from-green-500 via-emerald-500 to-teal-600 flex items-center justify-center">
-                             <i class="fas fa-vote-yea text-5xl text-white drop-shadow-lg"></i>
-                         </div>
-                         <div class="absolute top-3 left-3">
-                             <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-semibold">Web</span>
-                         </div>
-                         <div class="absolute top-3 right-3">
-                             <span class="bg-blue-500 text-white px-2 py-1 rounded text-xs">Active</span>
-                         </div>
-                     </div>
-                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors">
-                            Online Voting & Feedback System
-                        </h3>
-                        <p class="text-gray-400 mb-4 text-sm leading-relaxed">
-                            Full-stack web application for university voting and feedback with student/admin panels, real-time analytics, and secure authentication using bcrypt and sessions.
-                        </p>
-                        <div class="flex flex-wrap gap-1 mb-4">
-                            <span class="tech-tag-small bg-green-100 text-green-800 border border-green-200">Node.js</span>
-                            <span class="tech-tag-small bg-blue-100 text-blue-800 border border-blue-200">Express.js</span>
-                            <span class="tech-tag-small bg-purple-100 text-purple-800 border border-purple-200">PostgreSQL</span>
-                            <span class="tech-tag-small bg-yellow-100 text-yellow-800 border border-yellow-200">EJS</span>
-                        </div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center space-x-3 text-gray-400 text-sm">
-                                <div class="flex items-center">
-                                    <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                    <span>4.8</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="fas fa-code-branch mr-1"></i>
-                                    <span>5 forks</span>
-                                </div>
-                            </div>
-                            <div class="flex space-x-2">
-                                <a href="https://github.com/KcKabir/Voting1" target="_blank" class="project-link-small bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm transition-colors">
-                                    <i class="fas fa-external-link-alt mr-1"></i>Demo
-                                </a>
-                                <a href="https://github.com/KcKabir/Voting1" target="_blank" class="project-link-small bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm transition-colors">
-                                    <i class="fab fa-github mr-1"></i>Code
-                                </a>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                             <p class="text-white text-sm italic">-by KABIR</p>
-                         </div>
-                     </div>
-                 </div>
-
-                 <!-- Project Card 10 - IRCTC Website Redesign -->
-                 <div class="glass-card rounded-xl overflow-hidden group project-item hover:shadow-2xl hover:shadow-indigo-500/20 transition-all duration-300" data-category="web" data-aos="fade-up" data-aos-delay="600">
-                     <div class="relative">
-                         <div class="h-48 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-600 flex items-center justify-center">
-                             <i class="fas fa-train text-5xl text-white drop-shadow-lg"></i>
-                         </div>
-                         <div class="absolute top-3 left-3">
-                             <span class="bg-indigo-500 text-white px-2 py-1 rounded-full text-xs font-semibold">Web</span>
-                         </div>
-                         <div class="absolute top-3 right-3">
-                             <span class="bg-green-500 text-white px-2 py-1 rounded text-xs">Live</span>
-                         </div>
-                     </div>
-                     <div class="p-6">
-                         <h3 class="text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">
-                             IRCTC Website Redesign
-                         </h3>
-                         <p class="text-gray-400 mb-4 text-sm leading-relaxed">
-                             Modern, user-friendly redesign of the IRCTC website with enhanced UI, gamification features, and improved color scheme for better train ticket booking experience.
-                         </p>
-                         <div class="flex flex-wrap gap-1 mb-4">
-                             <span class="tech-tag-small bg-indigo-100 text-indigo-800 border border-indigo-200">Next.js</span>
-                             <span class="tech-tag-small bg-blue-100 text-blue-800 border border-blue-200">React</span>
-                             <span class="tech-tag-small bg-cyan-100 text-cyan-800 border border-cyan-200">Tailwind CSS</span>
-                             <span class="tech-tag-small bg-purple-100 text-purple-800 border border-purple-200">TypeScript</span>
-                         </div>
-                         <div class="flex items-center justify-between mb-3">
-                             <div class="flex items-center space-x-3 text-gray-400 text-sm">
-                                 <div class="flex items-center">
-                                     <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                     <span>4.9</span>
-                                 </div>
-                                 <div class="flex items-center">
-                                     <i class="fas fa-eye mr-1"></i>
-                                     <span>2.1k</span>
-                                 </div>
-                             </div>
-                             <div class="flex space-x-2">
-                                 <a href="https://irctc-website-virid.vercel.app" target="_blank" class="project-link-small bg-indigo-500 hover:bg-indigo-600 text-white px-3 py-1 rounded text-sm transition-colors">
-                                     <i class="fas fa-external-link-alt mr-1"></i>Live
-                                 </a>
-                                 <a href="https://github.com/priyansshi-i/Irctc--redesign" target="_blank" class="project-link-small bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm transition-colors">
-                                     <i class="fab fa-github mr-1"></i>Code
-                                 </a>
-                             </div>
-                         </div>
-                         <div class="text-right">
-                             <p class="text-white text-sm italic">-by PRIYANSHI</p>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-
-            <!-- Load More Button -->
-            <div class="text-center mt-16" data-aos="fade-up">
-                <button class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
-                    <i class="fas fa-plus mr-2"></i>Load More Projects
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contribute Section -->
-    <section id="contribute" class="py-20 bg-gradient-to-br from-gray-900 to-black">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center">
-                <div data-aos="fade-up">
-                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-                        Ready to <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Contribute?</span>
-                    </h2>
-                    <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
-                        Join our vibrant community of developers and start building amazing projects together. 
-                        Whether you're a beginner or expert, there's a place for you here.
+            <!-- Featured Post -->
+            <section id="latest-posts" class="mb-20">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-5xl font-bold text-white mb-6">Featured Article</h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        Dive deep into the latest technology trends and innovations
                     </p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                        <div class="glass-card p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="100">
-                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-lightbulb text-2xl text-white"></i>
+                </div>
+                    <section class="bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-3xl p-8 backdrop-blur-sm border border-white/10" data-aos="fade-up">
+  <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <!-- Left Content -->
+    <div>
+      <!-- Tag + Date -->
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Cheat Sheet</span>
+        <span class="text-gray-400 text-sm">4 September 2024</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h3 class="text-4xl font-bold text-white mb-6">
+        Join us for a Workshop on Mastering Git & GitHub for Students, organized by Techniki 💻
+      </h3>
+
+      <!-- Description -->
+      <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+        Download our exclusive <span class="font-semibold text-white">Git & GitHub Cheat Sheet</span> prepared for the event. 
+        A quick reference guide for students to learn essential Git commands, GitHub workflows, and collaboration tips.
+      </p>
+
+      <!-- Meta Info -->
+      <div class="flex items-center space-x-6 mb-8">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-user text-blue-400" aria-hidden="true"></i>
+          <span class="text-gray-300">Techniki Team</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-clock text-purple-400" aria-hidden="true"></i>
+          <span class="text-gray-300">2 min reference</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-tag text-green-400" aria-hidden="true"></i>
+          <span class="text-gray-300">Git & GitHub</span>
+        </div>
+      </div>
+
+      <!-- Cheat Sheet Button -->
+      <a href="/pages/blog/assets/git-cheat-sheet.pdf" target="_blank" class="inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-xl">
+        <i class="fas fa-file-pdf mr-2" aria-hidden="true"></i>Download Cheat Sheet
+      </a>
+    </div>
+
+    <!-- Right Side (Preview Box) -->
+    <div class="relative">
+      <div class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl p-8 h-80 flex items-center justify-center">
+        <div class="text-center">
+          <i class="fas fa-code-branch text-white text-6xl mb-4" aria-hidden="true"></i>
+          <h4 class="text-white text-2xl font-bold">Git & GitHub</h4>
+          <p class="text-gray-200 mt-2">Quick Reference PDF</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<br>
+<br>
+                <div class="bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-3xl p-8 backdrop-blur-sm border border-white/10" data-aos="fade-up">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <div class="flex items-center space-x-4 mb-6">
+                                <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Featured</span>
+                                <span class="text-gray-400 text-sm">August 15, 2024</span>
                             </div>
-                            <h3 class="text-xl font-bold text-white mb-3">Share Your Ideas</h3>
-                            <p class="text-gray-400">Propose new project ideas and get feedback from the community</p>
+                            <h3 class="text-4xl font-bold text-white mb-6">The Future of AI in Web Development</h3>
+                            <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+                                Explore how artificial intelligence is revolutionizing web development, from automated code generation to intelligent user experiences. 
+                                Discover the tools and techniques that are shaping the future of frontend and backend development.
+                            </p>
+                            <div class="flex items-center space-x-6 mb-8">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-user text-blue-400"></i>
+                                    <span class="text-gray-300">Techniki Team</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-clock text-purple-400"></i>
+                                    <span class="text-gray-300">8 min read</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-tag text-green-400"></i>
+                                    <span class="text-gray-300">AI/ML</span>
+                                </div>
+                            </div>
+                            <a href="#" class="inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-xl">
+                                <i class="fas fa-arrow-right mr-2"></i>Read Full Article
+                            </a>
                         </div>
-                        
-                        <div class="glass-card p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="200">
-                            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-code text-2xl text-white"></i>
+                        <div class="relative">
+                            <div class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl p-8 h-80 flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-robot text-white text-6xl mb-4"></i>
+                                    <h4 class="text-white text-2xl font-bold">AI + Web Dev</h4>
+                                </div>
                             </div>
-                            <h3 class="text-xl font-bold text-white mb-3">Code Together</h3>
-                            <p class="text-gray-400">Collaborate on existing projects and learn from experienced developers</p>
-                        </div>
-                        
-                        <div class="glass-card p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="300">
-                            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-rocket text-2xl text-white"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white mb-3">Launch Projects</h3>
-                            <p class="text-gray-400">Deploy your projects and showcase them to the tech community</p>
                         </div>
                     </div>
-                    
+                </div>
+            </section>
+
+            <!-- Blog Categories -->
+            <section class="mb-20">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-5xl font-bold text-white mb-6">Explore by Category</h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        Find articles that match your interests and expertise level
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="blog-category-card group" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="bg-gradient-to-br from-blue-500/20 to-blue-700/20 p-8 rounded-2xl border border-blue-500/30 transition-all duration-300 group-hover:scale-105 group-hover:border-blue-400">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                                    <i class="fas fa-brain text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-4">AI & Machine Learning</h3>
+                                <p class="text-gray-300 mb-6">Deep learning, neural networks, and AI applications</p>
+                                <div class="text-blue-400 font-semibold">12 Articles</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blog-category-card group" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="bg-gradient-to-br from-purple-500/20 to-purple-700/20 p-8 rounded-2xl border border-purple-500/30 transition-all duration-300 group-hover:scale-105 group-hover:border-purple-400">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                                    <i class="fas fa-code text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-4">Web Development</h3>
+                                <p class="text-gray-300 mb-6">Frontend, backend, and full-stack tutorials</p>
+                                <div class="text-purple-400 font-semibold">18 Articles</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blog-category-card group" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="bg-gradient-to-br from-green-500/20 to-green-700/20 p-8 rounded-2xl border border-green-500/30 transition-all duration-300 group-hover:scale-105 group-hover:border-green-400">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                                    <i class="fas fa-cube text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-4">AR/VR</h3>
+                                <p class="text-gray-300 mb-6">Immersive technologies and 3D experiences</p>
+                                <div class="text-green-400 font-semibold">8 Articles</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blog-category-card group" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="bg-gradient-to-br from-yellow-500/20 to-yellow-700/20 p-8 rounded-2xl border border-yellow-500/30 transition-all duration-300 group-hover:scale-105 group-hover:border-yellow-400">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                                    <i class="fas fa-mobile-alt text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-4">Mobile Development</h3>
+                                <p class="text-gray-300 mb-6">iOS, Android, and cross-platform apps</p>
+                                <div class="text-yellow-400 font-semibold">10 Articles</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Articles -->
+            <section class="mb-20">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-5xl font-bold text-white mb-6">Recent Articles</h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        Stay updated with our latest insights and tutorials
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <!-- Article 1 -->
+                    <article class="blog-card bg-black bg-opacity-30 rounded-2xl overflow-hidden backdrop-blur-sm border border-white/10 transition-all duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+                            <i class="fas fa-laptop-code text-white text-4xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center space-x-2 mb-3">
+                                <span class="bg-blue-500 text-white px-2 py-1 rounded text-xs">Web Dev</span>
+                                <span class="text-gray-400 text-sm">Aug 10, 2024</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Building Modern React Applications</h3>
+                            <p class="text-gray-300 text-sm mb-4">Learn the best practices for building scalable React applications with hooks, context, and modern tooling.</p>
+                            <a href="#" class="text-blue-400 hover:text-blue-300 font-semibold text-sm">Read More →</a>
+                        </div>
+                    </article>
+
+                    <!-- Article 2 -->
+                    <article class="blog-card bg-black bg-opacity-30 rounded-2xl overflow-hidden backdrop-blur-sm border border-white/10 transition-all duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="200">
+                        <div class="h-48 bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center">
+                            <i class="fas fa-neural-network text-white text-4xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center space-x-2 mb-3">
+                                <span class="bg-purple-500 text-white px-2 py-1 rounded text-xs">AI/ML</span>
+                                <span class="text-gray-400 text-sm">Aug 8, 2024</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Introduction to Neural Networks</h3>
+                            <p class="text-gray-300 text-sm mb-4">Understand the fundamentals of neural networks and how they power modern AI applications.</p>
+                            <a href="#" class="text-purple-400 hover:text-purple-300 font-semibold text-sm">Read More →</a>
+                        </div>
+                    </article>
+
+                    <!-- Article 3 -->
+                    <article class="blog-card bg-black bg-opacity-30 rounded-2xl overflow-hidden backdrop-blur-sm border border-white/10 transition-all duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="300">
+                        <div class="h-48 bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center">
+                            <i class="fas fa-vr-cardboard text-white text-4xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center space-x-2 mb-3">
+                                <span class="bg-green-500 text-white px-2 py-1 rounded text-xs">AR/VR</span>
+                                <span class="text-gray-400 text-sm">Aug 5, 2024</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Getting Started with WebXR</h3>
+                            <p class="text-gray-300 text-sm mb-4">Explore the possibilities of VR and AR experiences directly in the web browser.</p>
+                            <a href="#" class="text-green-400 hover:text-green-300 font-semibold text-sm">Read More →</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Write for Us Section -->
+            <section id="write-for-us" class="py-20 bg-gradient-to-r from-blue-900/50 to-purple-900/50 rounded-3xl" data-aos="fade-up">
+                <div class="text-center">
+                    <h2 class="text-5xl font-bold text-white mb-6">Write for Techनिकी</h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+                        Share your knowledge and expertise with our community. We welcome contributions from developers, researchers, and tech enthusiasts.
+                    </p>
+                    <div class="grid md:grid-cols-3 gap-8 mb-12">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-lightbulb text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Share Ideas</h3>
+                            <p class="text-gray-300">Contribute innovative concepts and insights</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-chalkboard-teacher text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Teach Others</h3>
+                            <p class="text-gray-300">Create tutorials and educational content</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-users text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Build Community</h3>
+                            <p class="text-gray-300">Connect with like-minded developers</p>
+                        </div>
+                    </div>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                        <a href="form.html" class="hero-btn bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl">
-                            <i class="fas fa-user-plus mr-2"></i>Join Community
+                        <a href="mailto:techniki@ggn.amity.edu?subject=Blog Submission" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 shadow-xl">
+                            <i class="fas fa-envelope mr-2"></i>Submit Your Article
                         </a>
-                        <a href="#" class="hero-btn bg-transparent border-2 border-green-400 text-green-400 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-green-400 hover:text-white">
-                            <i class="fab fa-github mr-2"></i>GitHub Organization
+                        <a href="#" class="bg-transparent border-2 border-blue-400 text-blue-400 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-blue-400 hover:text-white">
+                            <i class="fas fa-file-alt mr-2"></i>Guidelines
                         </a>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
-    </section>
+    </main>
     <!-- Enhanced Footer -->
     <footer id="footer" class="bg-black bg-opacity-80 backdrop-blur-lg text-white py-12">
         <div class="container mx-auto px-4">
@@ -1224,12 +517,15 @@
 
     <!-- Enhanced Scripts -->
     <script>
-              AOS.init({ 
+        // Initialize AOS
+         AOS.init({
             duration: 1000,
-             easing: 'ease-in-out',
-              once: true, 
-              mirror: false,
-             disable: window.innerWidth < 768 });
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false,
+            disable: window.innerWidth < 768 // Disable on mobile for performance
+        });
+         // Only initialize VANTA on desktop
         if (window.innerWidth > 768) {
             VANTA.NET({
                 el: "#vanta-bg",
@@ -1246,29 +542,24 @@
                 maxDistance: 25.00,
                 spacing: 18.00
             });
-            } else {
+        } else {
             // Set a simple gradient background for mobile
             document.getElementById('vanta-bg').style.background = 'linear-gradient(to bottom, #111827, #1f2937)';
         }
-        // Mobile Menu Toggle
+
+       // Mobile Menu Toggle
         const menuButton = document.getElementById('menu-button');
         const closeMenuButton = document.getElementById('close-menu');
         const mobileMenu = document.getElementById('mobile-menu');
- if (menuButton && mobileMenu) {
+
+          if (menuButton && mobileMenu) {
             menuButton.addEventListener('click', function() {
                 mobileMenu.classList.remove('mobile-menu-closed');
                 mobileMenu.classList.add('mobile-menu-open');
                 document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
             });
         }
-        
-        if (closeMenuButton && mobileMenu) {
-            closeMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.remove('mobile-menu-open');
-                mobileMenu.classList.add('mobile-menu-closed');
-                document.body.style.overflow = ''; // Re-enable scrolling
-            });
-        } // Close menu when clicking outside the menu content
+         // Close menu when clicking outside the menu content
         if (mobileMenu) {
             mobileMenu.addEventListener('click', function(e) {
                 if (e.target === mobileMenu) {
@@ -1278,7 +569,8 @@
                 }
             });
         }
-          const mobileLinks = document.querySelectorAll('#mobile-menu a');
+         // Close menu when clicking on a link
+        const mobileLinks = document.querySelectorAll('#mobile-menu a');
         mobileLinks.forEach(link => {
             link.addEventListener('click', function() {
                 mobileMenu.classList.remove('mobile-menu-open');
@@ -1286,20 +578,18 @@
                 document.body.style.overflow = '';
             });
         });
-   // Navbar Scroll Effect
-  window.addEventListener('scroll', function() {
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 100) {
                 navbar.style.background = 'rgba(0, 0, 0, 0.9)';
                 navbar.style.backdropFilter = 'blur(20px)';
             } else {
-                navbar.style.background = 'rgba(0, 0, 0, 0.5)';
+                navbar.style.background = 'rgba(255, 255, 255, 0.1)';
                 navbar.style.backdropFilter = 'blur(10px)';
             }
         });
-
-        // Counter Animation
-   
+         // Counter Animation
         function animateCounters() {
             const counters = document.querySelectorAll('[data-count]');
             let animated = false;
@@ -1324,7 +614,8 @@
                 }
             });
         }
-          // Trigger counter animation when section is visible
+        
+ // Trigger counter animation when section is visible
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1338,7 +629,40 @@
         if (statsSection) {
             observer.observe(statsSection);
         }
-        // Smooth scrolling for anchor links
+          // Observe counter sections
+        document.querySelectorAll('.counter').forEach(counter => {
+            observer.observe(counter.parentElement.parentElement.parentElement);
+        });
+          // Project filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectItems = document.querySelectorAll('.project-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active', 'bg-gradient-to-r', 'from-blue-500', 'to-purple-600', 'text-white');
+                    btn.classList.add('bg-gray-800', 'text-gray-300');
+                });
+                
+                // Add active class to clicked button
+                button.classList.add('active', 'bg-gradient-to-r', 'from-blue-500', 'to-purple-600', 'text-white');
+                button.classList.remove('bg-gray-800', 'text-gray-300');
+
+                const filter = button.getAttribute('data-filter');
+                
+                projectItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                        item.classList.add('animate-fade-in');
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+             // Mobile menu toggle logic
+               // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1361,7 +685,9 @@
                 }
             });
         });
-         if (window.innerWidth < 768) {
+
+        // Add performance optimization for mobile
+        if (window.innerWidth < 768) {
             // Reduce the number of AOS animations on mobile
             const reducedAnimations = document.querySelectorAll('[data-aos]');
             reducedAnimations.forEach((el, index) => {
@@ -1370,36 +696,8 @@
                 }
             });
         }
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-
-        // Newsletter subscription
-        document.querySelector('footer button').addEventListener('click', function() {
-            const email = document.querySelector('footer input[type="email"]').value;
-            if (email) {
-                // Simulate subscription (replace with actual implementation)
-                this.innerHTML = '<i class="fas fa-check mr-2"></i>Subscribed!';
-                this.classList.remove('from-blue-500', 'to-purple-600');
-                this.classList.add('from-green-500', 'to-green-600');
-                setTimeout(() => {
-                    this.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Subscribe';
-                    this.classList.add('from-blue-500', 'to-purple-600');
-                    this.classList.remove('from-green-500', 'to-green-600');
-                    document.querySelector('footer input[type="email"]').value = '';
-                }, 2000);
-            }
-        });
+ ;
     </script>
-
 </body>
 </html>
+
